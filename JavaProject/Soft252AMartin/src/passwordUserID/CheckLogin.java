@@ -1,12 +1,9 @@
-
 package passwordUserID;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-
 
 public class CheckLogin 
 {

@@ -1,26 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package userGUI;
 
 import passwordUserID.CheckLogin;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-/**
- *
- * @author HP
- */
-public class Logon extends javax.swing.JFrame {
-
-    
-    /**
-     * Creates new form UserGUI
-     */
-    public Logon() {
-        
+public class Logon extends javax.swing.JFrame 
+{
+    public Logon() 
+    {
         initComponents();
         this.setSize(250, 275);
     }
@@ -179,7 +166,6 @@ public class Logon extends javax.swing.JFrame {
     
     ////////////////////////////////////////////////////////////////////////////
     // START OF LOGIN IN FUNCTIONALITY
-    
     private void checkLoginDetails()
     {
         boolean success = checkForNull(txtLoginUserID);
@@ -193,9 +179,9 @@ public class Logon extends javax.swing.JFrame {
     // checks user input against data
     private boolean checkUserNameAndPassword()
     {
-        System.out.println("userGUI.Logon.checkUserNameAndPassword()");//////////////////////////////////////////////////
         CheckLogin checkLogin = new CheckLogin();
-        boolean success = checkLogin.checkUserNameAndPassword(txtLoginUserID.getText(), jPasswordField1.getText());
+        boolean success = checkLogin.checkUserNameAndPassword
+        (txtLoginUserID.getText(), jPasswordField1.getText());
         return success;
     }
     // prepare for user spefic gui
@@ -207,10 +193,11 @@ public class Logon extends javax.swing.JFrame {
     //
     private void loginUnsuccessful()
     {
-        lblLoginTitle.setText("not success"); /////////////////////////////////////////////////////////////////
         txtLoginUserID.setText("");
         jPasswordField1.setText("");
     }
+    // END OF LOGIN IN FUNCTIONALITY
+    ////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////
     // START OF INPUT CHECKS
     private boolean checkForNull(JTextField field)
