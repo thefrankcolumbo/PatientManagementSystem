@@ -1,6 +1,7 @@
 
 package people;
 
+import soft252amartin.EPersonType;
 import java.time.LocalDate;
 import java.time.Period;
 

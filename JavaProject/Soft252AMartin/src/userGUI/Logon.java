@@ -5,6 +5,7 @@
  */
 package userGUI;
 
+import passwordUserID.CheckLogin;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -14,10 +15,12 @@ import javax.swing.JTextField;
  */
 public class Logon extends javax.swing.JFrame {
 
+    
     /**
      * Creates new form UserGUI
      */
     public Logon() {
+        
         initComponents();
         this.setSize(250, 275);
     }
@@ -184,22 +187,21 @@ public class Logon extends javax.swing.JFrame {
         if (success) success = checkForNull(jPasswordField1);
         if (success) success = checkPasswordLength(jPasswordField1);
         if (success) success = checkUserNameAndPassword();
-        if (success) loginSuccessful();
+        if (success) loginSuccessful(txtLoginUserID.getText());
         else loginUnsuccessful();
     }
     // checks user input against data
     private boolean checkUserNameAndPassword()
     {
-        return true;
+        System.out.println("userGUI.Logon.checkUserNameAndPassword()");//////////////////////////////////////////////////
+        CheckLogin checkLogin = new CheckLogin();
+        boolean success = checkLogin.checkUserNameAndPassword(txtLoginUserID.getText(), jPasswordField1.getText());
+        return success;
     }
     // prepare for user spefic gui
-    private void loginSuccessful()
+    private void loginSuccessful(String userID)
     {
-        lblLoginTitle.setText("success"); /////////////////////////////////////////////////////////////
-        txtLoginUserID.setText("");
-        jPasswordField1.setText("");
-        pnlLogin.setVisible(false);
-        holding.main();
+        holding.main(userID);
         this.dispose();
     }
     //
@@ -225,7 +227,7 @@ public class Logon extends javax.swing.JFrame {
     }
     private boolean checkPasswordLength(JPasswordField field)
     {
-        return field.getText().length() > 8;
+        return field.getText().length() > 7;
     }
     // END OF INPUT CHECKS
     ////////////////////////////////////////////////////////////////////////////

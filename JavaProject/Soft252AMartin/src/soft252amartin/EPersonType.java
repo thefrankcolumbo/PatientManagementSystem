@@ -1,5 +1,5 @@
 
-package people;
+package soft252amartin;
 
 public enum EPersonType 
 {
