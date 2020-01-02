@@ -7,6 +7,7 @@ import java.time.Period;
 
 public abstract class Person 
 {
+    protected String title;
     protected String givenName;
     protected String surname;
     protected String addressLine1;
