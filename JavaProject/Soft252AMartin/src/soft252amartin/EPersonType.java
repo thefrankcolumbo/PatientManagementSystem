@@ -6,5 +6,6 @@ public enum EPersonType
     Administrator,
     Doctor,
     Patient,
-    Secretary
+    Secretary,
+    Test
 }
