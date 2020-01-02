@@ -1,17 +1,14 @@
 
 package people;
 
+import soft252amartin.EPersonType;
+
 public class Administrator extends Person implements IViewDoctorRatings, ICreateAccount
 {
     
     public Administrator(String UniqueIdentifier)
     {
-        super(UniqueIdentifier);
-        
-    }
-    private void createAdminAccount()
-    {
-        
+        super(UniqueIdentifier, "Administrator");
     }
     private void createDoctor()
     {

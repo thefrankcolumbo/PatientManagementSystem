@@ -31,11 +31,27 @@ public class CheckUserAndPasswords
      */
     public boolean checkUserNameAndPassword(String userName, String inputPassword)
     {
-        //userID = null;
         boolean success = checkUserNameExists(userName);
         if (success) success = masterCheckPassword(inputPassword);
-        
         return success;
+    }
+    /**
+     * method to hash a string
+     * @param unhashedPassword
+     * @return String
+     */
+    public String hashPassword(String unhashedPassword)
+    {
+        return hashInputPassword(unhashedPassword);
+    }
+    /**
+     * check if user name already exists
+     * @param userName
+     * @return boolean
+     */
+    public boolean checkUserNameExist(String userName)
+    {
+        return checkUserNameExists(userName);
     }
     /**
      * Checks for the next available userID for a spefic PersonType
