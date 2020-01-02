@@ -1,16 +1,20 @@
 package passwordUserID;
 
+import java.awt.List;
 import java.io.File;
 import java.io.FileInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Vector;
 
-public class CheckLogin 
+public class CheckUserAndPasswords 
 {
     private String[] userPasswordList = null;
+    private Vector usedIDArray;// = null;
     private int userPasswordListElement;
+    private String userID;
     
-    public CheckLogin()
+    public CheckUserAndPasswords()
     {
         setUserPasswordList();
     }
@@ -27,10 +31,47 @@ public class CheckLogin
      */
     public boolean checkUserNameAndPassword(String userName, String inputPassword)
     {
+        //userID = null;
         boolean success = checkUserNameExists(userName);
         if (success) success = masterCheckPassword(inputPassword);
         
         return success;
+    }
+    /**
+     * Checks for the next available userID for a spefic PersonType
+     * @param personType
+     * @return String
+     */
+    public String checkForNextAvailableUserID(String personType)
+    {
+        usedIDArray = new Vector();
+        getCurrentUsedID(personType);
+        String freeNumber = createNextUserID();
+        return personType + freeNumber;
+    }
+    private String createNextUserID()
+    {
+        boolean freeNumber = false;
+        int nextFreeNumber = 0;
+        while (!freeNumber)
+        {
+            nextFreeNumber++;
+            freeNumber = !usedIDArray.contains(nextFreeNumber);
+            
+        }
+        String freeNumberString = String.valueOf(nextFreeNumber);
+        return ("0000" + freeNumberString).substring(freeNumberString.length());
+    }
+    private void getCurrentUsedID(String personType)
+    {
+        for (int x = 0; x < userPasswordList.length; x++)
+        {
+            if (personType.equals(userPasswordList[x].substring(0,1)))
+            {
+                int y = Integer.parseInt(userPasswordList[x].substring(1,5));
+                usedIDArray.add(y);
+            }
+        }
     }
     private boolean checkUserNameExists(String userName)
     {
@@ -40,6 +81,7 @@ public class CheckLogin
             if (userName.equals(userPasswordList[x].substring(0,5)))
             {
                 userPasswordListElement = x;
+                this.userID = userName;
                 success = true;
             }
         }
