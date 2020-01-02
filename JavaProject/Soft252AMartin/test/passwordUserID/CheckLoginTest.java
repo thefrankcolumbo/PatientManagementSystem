@@ -68,7 +68,7 @@ public class CheckLoginTest {
      */
     @Test
     public void testCheckUserNameAndPassword03() {
-        System.out.println("FAIL checkUserNameAndPassword T0002 password");
+        System.out.println("FAIL WRONG PASSWORD checkUserNameAndPassword T0002 password");
         String userName = "T0002";
         String inputPassword = "password";
         boolean expResult = false;
@@ -76,5 +76,82 @@ public class CheckLoginTest {
         boolean result = checkLogin.checkUserNameAndPassword(userName, inputPassword);
         assertEquals(expResult, result);
     }
-    
+    /**
+     * Test of checkUserNameAndPassword method, of class checkLogin.
+     */
+    @Test
+    public void testCheckUserNameAndPassword04() {
+        System.out.println("FAIL USERID DOES NOT EXIST checkUserNameAndPassword T9999 password");
+        String userName = "T9999";
+        String inputPassword = "password";
+        boolean expResult = false;
+        CheckLogin checkLogin = new CheckLogin();
+        boolean result = checkLogin.checkUserNameAndPassword(userName, inputPassword);
+        assertEquals(expResult, result);
+    }
+    /**
+     * Test of checkUserNameAndPassword method, of class checkLogin.
+     */
+    @Test
+    public void testCheckUserNameAndPassword05() {
+        System.out.println("FAIL USERID TO SHORT checkUserNameAndPassword T000 password");
+        String userName = "T000";
+        String inputPassword = "password";
+        boolean expResult = false;
+        CheckLogin checkLogin = new CheckLogin();
+        boolean result = checkLogin.checkUserNameAndPassword(userName, inputPassword);
+        assertEquals(expResult, result);
+    }
+    /**
+     * Test of checkUserNameAndPassword method, of class checkLogin.
+     */
+    @Test
+    public void testCheckUserNameAndPassword06() {
+        System.out.println("FAIL USERID TOO LONG checkUserNameAndPassword T99999 password");
+        String userName = "T99999";
+        String inputPassword = "password";
+        boolean expResult = false;
+        CheckLogin checkLogin = new CheckLogin();
+        boolean result = checkLogin.checkUserNameAndPassword(userName, inputPassword);
+        assertEquals(expResult, result);
+    }
+    /**
+     * Test of checkUserNameAndPassword method, of class checkLogin.
+     */
+    @Test
+    public void testCheckUserNameAndPassword07() {
+        System.out.println("FAIL USERID NOT ENTERED checkUserNameAndPassword  password");
+        String userName = "";
+        String inputPassword = "password";
+        boolean expResult = false;
+        CheckLogin checkLogin = new CheckLogin();
+        boolean result = checkLogin.checkUserNameAndPassword(userName, inputPassword);
+        assertEquals(expResult, result);
+    }
+    /**
+     * Test of checkUserNameAndPassword method, of class checkLogin.
+     */
+    @Test
+    public void testCheckUserNameAndPassword08() {
+        System.out.println("FAIL PASSWORD TOO SHORT checkUserNameAndPassword T9999 pass");
+        String userName = "T9999";
+        String inputPassword = "pass";
+        boolean expResult = false;
+        CheckLogin checkLogin = new CheckLogin();
+        boolean result = checkLogin.checkUserNameAndPassword(userName, inputPassword);
+        assertEquals(expResult, result);
+    }
+    /**
+     * Test of checkUserNameAndPassword method, of class checkLogin.
+     */
+    @Test
+    public void testCheckUserNameAndPassword09() {
+        System.out.println("FAIL PASSWORD NOT ENTERED checkUserNameAndPassword T9999 ");
+        String userName = "T9999";
+        String inputPassword = "";
+        boolean expResult = false;
+        CheckLogin checkLogin = new CheckLogin();
+        boolean result = checkLogin.checkUserNameAndPassword(userName, inputPassword);
+        assertEquals(expResult, result);
+    }
 }
