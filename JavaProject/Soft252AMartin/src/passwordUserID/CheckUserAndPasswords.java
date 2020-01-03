@@ -1,6 +1,5 @@
 package passwordUserID;
 
-import java.awt.List;
 import java.io.File;
 import java.io.FileInputStream;
 import java.security.MessageDigest;
@@ -60,9 +59,16 @@ public class CheckUserAndPasswords
      */
     public String checkForNextAvailableUserID(String personType)
     {
-        usedIDArray = new Vector();
-        getCurrentUsedID(personType);
-        String freeNumber = createNextUserID();
+        String freeNumber = "0001";
+        System.out.println(userPasswordList.length);
+        System.out.println(userPasswordList[0]);
+        if(userPasswordList[0] != null)
+        {
+            usedIDArray = new Vector();
+            getCurrentUsedID(personType);
+            freeNumber = createNextUserID();
+        }
+        
         return personType + freeNumber;
     }
     private String createNextUserID()
@@ -73,13 +79,13 @@ public class CheckUserAndPasswords
         {
             nextFreeNumber++;
             freeNumber = !usedIDArray.contains(nextFreeNumber);
-            
         }
         String freeNumberString = String.valueOf(nextFreeNumber);
         return ("0000" + freeNumberString).substring(freeNumberString.length());
     }
     private void getCurrentUsedID(String personType)
     {
+       
         for (int x = 0; x < userPasswordList.length; x++)
         {
             if (personType.equals(userPasswordList[x].substring(0,1)))
@@ -92,15 +98,19 @@ public class CheckUserAndPasswords
     private boolean checkUserNameExists(String userName)
     {
         boolean success = false;
-        for (int x = 0; x < userPasswordList.length; x++)
+         if(userPasswordList[0] != null)
         {
-            if (userName.equals(userPasswordList[x].substring(0,5)))
+            for (int x = 0; x < userPasswordList.length; x++)
             {
-                userPasswordListElement = x;
-                this.userID = userName;
-                success = true;
+                if (userName.equals(userPasswordList[x].substring(0,5)))
+                {
+                    userPasswordListElement = x;
+                    this.userID = userName;
+                    success = true;
+                }
             }
         }
+        
         return success;
     }
     private boolean masterCheckPassword(String inputPassword)
