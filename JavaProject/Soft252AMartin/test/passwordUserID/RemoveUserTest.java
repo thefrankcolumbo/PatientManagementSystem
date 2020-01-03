@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package passwordUserID;
 
 import org.junit.After;
@@ -13,10 +9,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import soft252amartin.EPersonType;
 
-/**
- *
- * @author HP
- */
 public class RemoveUserTest {
     
     public RemoveUserTest() {
@@ -44,8 +36,8 @@ public class RemoveUserTest {
     @Test
     public void testRemoveUser() {
         System.out.println("removeUser");
-        String userID = "D0002";
-        EPersonType personType = EPersonType.Doctor;
+        String userID = "T0002";
+        EPersonType personType = EPersonType.Test;
         boolean expResult = true;
         boolean result = RemoveUser.removeUser(userID, personType);
         assertEquals(expResult, result);
