@@ -4,7 +4,6 @@ package passwordUserID;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.PrintWriter;
 import soft252amartin.EPersonType;
 
 
@@ -69,11 +68,10 @@ public class MakeUser
     private static void addUserAndPasswordToUserPasswordTable(String userID, String hashedPassword)
     {
         String lineToBeWritten = userID.trim() + " " + hashedPassword.trim();
-        try /*(FileWriter fw = new FileWriter("res\\resources\\userIDPasswordTable.txt", true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter out = new PrintWriter(bw);)*/
+        try 
         {
             BufferedWriter bw = new BufferedWriter(new FileWriter("res\\resources\\userIDPasswordTable.txt", true));
+            
             bw.write(lineToBeWritten);
             bw.newLine();
             bw.flush();

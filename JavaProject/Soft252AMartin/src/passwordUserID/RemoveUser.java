@@ -31,25 +31,25 @@ public class RemoveUser
             BufferedReader reader = new BufferedReader(new FileReader(path));
             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
             
-            String lineToRemove = userID;
-            String currentLine;
-            
-            while((currentLine = reader.readLine()) != null) 
-            {
-                String trimmedLine = currentLine.trim();
-                if(trimmedLine.contains(lineToRemove)) continue;
-                writer.write(currentLine + System.getProperty("line.separator"));
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                if (line.isEmpty())continue;
+                if (!line.startsWith(userID)) {
+                    writer.write(line);
+                    writer.newLine();
+                }
             }
-            writer.close(); 
             reader.close();
+            writer.close();
             path.delete();
             tempFile.renameTo(path);
             return true;
         } 
         catch (IOException ex) 
         {
+            System.out.println(ex);
             Logger.getLogger(RemoveUser.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
+            return  false;
         }
     }
     private static void removeUserData(String userID, EPersonType personType)
