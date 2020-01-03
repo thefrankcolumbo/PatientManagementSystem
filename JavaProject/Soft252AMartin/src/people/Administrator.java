@@ -1,6 +1,8 @@
 
 package people;
 
+import passwordUserID.MakeUser;
+import passwordUserID.RemoveUser;
 import soft252amartin.EPersonType;
 
 public class Administrator extends Person implements IViewDoctorRatings, ICreateAccount
@@ -10,23 +12,83 @@ public class Administrator extends Person implements IViewDoctorRatings, ICreate
     {
         super(UniqueIdentifier, "Administrator");
     }
-    private void createDoctor()
+    /**
+     * Method to create a new Doctor. Password must be in plain text.
+     * Parameter DOB must be in "dd/MM/YYYY" format.
+     * Parameter Password must be in plain text.
+     * If Doctor created successfully then Method will return true.
+     * Else Method will return false.
+     * @param givenName
+     * @param surname
+     * @param addressLine1
+     * @param addressLine2
+     * @param addressLine3
+     * @param addressPostcode
+     * @param DOB
+     * @param password
+     * @return boolean
+     */
+    public String createDoctor(String givenName, String surname, String addressLine1, 
+            String addressLine2, String addressLine3, String addressPostcode, 
+            String DOB, String password)
     {
-        
+        return MakeUser.makeAUser(givenName, surname, addressLine1, 
+                addressLine2, addressLine3, addressPostcode, DOB, 
+                EPersonType.Doctor, DOB);
     }
-    private void removeDoctor()
+    /**
+     * Method to remove a current Doctor.
+     * If doctor removal is unsuccessful then Method will return False.
+     * If userID for doctor does not exist then Method will return False.
+     * Else Method will return True.
+     * @param userID
+     * @return boolean
+     */
+    public boolean removeDoctor(String userID)
     {
-        
+        return RemoveUser.removeUser(userID, EPersonType.Doctor);
     }
-    private void createSecretary()
+//    public Vector listAllCurrentDoctors()
+//    {
+//        
+//    }
+    /**
+     * Method to create a new Secretary. Password must be in plain text.
+     * Parameter DOB must be in "dd/MM/YYYY" format.
+     * Parameter Password must be in plain text.
+     * If Secretary created successfully then Method will return true.
+     * Else Method will return false.
+     * @param givenName
+     * @param surname
+     * @param addressLine1
+     * @param addressLine2
+     * @param addressLine3
+     * @param addressPostcode
+     * @param DOB
+     * @param password
+     * @return boolean
+     */
+    public String createSecretary(String givenName, String surname, 
+            String addressLine1, String addressLine2, String addressLine3, 
+            String addressPostcode, String DOB, String password)
     {
-        
+        return MakeUser.makeAUser(givenName, surname, addressLine1, 
+                addressLine2, addressLine3, addressPostcode, DOB, 
+                EPersonType.Secretary, DOB);
     }
-    private void removeSecretary()
+    /**
+     * Method to remove a current Secretary.
+     * If Secretary removal is unsuccessful then Method will return False.
+     * If userID for Secretary does not exist then Method will return False.
+     * Else Method will return True.
+     * @param userID
+     * @return boolean
+     */
+    public boolean removeSecretary(String userID)
     {
-        
+        return RemoveUser.removeUser(userID, EPersonType.Secretary);
     }
-    private void provideDoctorFeedBack()
+    private void provideDoctorFeedBack(String userID)
     {
         
     }
