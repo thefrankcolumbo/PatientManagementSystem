@@ -19,7 +19,7 @@ public class Doctor extends Person implements IViewPatientHistory, IViewAppointm
      * @param newData String
      * @return boolean
      */
-    public boolean makeNotes(String userID, String newData)
+    public boolean makeNotes(String userID, String newData[])
     {
         return addPatientReview(userID, newData);
     }
