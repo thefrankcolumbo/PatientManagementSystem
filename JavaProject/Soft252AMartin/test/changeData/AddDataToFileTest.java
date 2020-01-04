@@ -88,7 +88,7 @@ public class AddDataToFileTest
         String comma = ",";
         String allTestData = medicineName + comma + quantity + comma + unitDefinition + comma + medicineNotes;
         String path = "res\\Test\\medicinesList.csv";
-        //add test date to file
+        //add test data to file
         boolean result = AddDataToFile.addNewMedicine(medicineName, quantity, unitDefinition, medicineNotes, path);
         // check test data has been added
         List conformation = new ArrayList<>();
@@ -100,5 +100,37 @@ public class AddDataToFileTest
         assertEquals(conformationResult, result);
         // now remove the test data
         if(conformationResult) fileManagement.AmendFile.removeLine(path, medicineName);
+    }
+    /**
+     * Test of changeMedicineDetails method, of class AddDataToFile.
+     */
+    @Test
+    public void testChangeMedicineDetails() {
+        System.out.println("Test to check that a quantity of medicine has been amended");
+        // set up test variables
+        String medicineName = "medicine name4";
+        String newQuantity = "20";
+        String path = "res\\Test\\medicinesList.csv";
+        // set up original test data varaibles
+        String originalMedicineName = medicineName;
+        String originalQuantity = "units remaining";
+        String originalUnitDefinition = "unit definition";
+        String orginalMedicineNotes = "medicine notes";
+        String comma = ",";
+        String newDataLine = originalMedicineName + comma + newQuantity + comma 
+                + originalUnitDefinition + comma + orginalMedicineNotes;
+        String orginalDataLine = originalMedicineName + comma + originalQuantity 
+                + comma + originalUnitDefinition + comma + orginalMedicineNotes;
+        // change quantity
+        boolean result = AddDataToFile.changeMedicineDetails(medicineName, newQuantity, path);
+        // check test data has been changed
+        List conformation = new ArrayList<>();
+        conformation = fileManagement.ReadFile.getLineContainingReturnList(path, medicineName);
+        boolean conformationResult = false;
+        if(conformation.get(0).equals(newDataLine)) conformationResult = true;
+        //the test
+        assertEquals(conformationResult, result);
+        // undo changes
+        result = AddDataToFile.changeMedicineDetails(medicineName, originalQuantity, path);
     }
 }
