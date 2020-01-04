@@ -18,7 +18,7 @@ public class Patient extends Person implements IViewDoctorRatings, IViewPatientH
      * @param newData String
      * @return boolean
      */
-    public boolean rateDoctor(String userID, String newData)
+    public boolean rateDoctor(String userID, String[] newData)
     {
         return addDoctorReview(userID, newData);
     }
