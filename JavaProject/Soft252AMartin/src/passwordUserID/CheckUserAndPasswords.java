@@ -9,7 +9,7 @@ import java.util.Vector;
 public class CheckUserAndPasswords 
 {
     private String[] userPasswordList = null;
-    private Vector usedIDArray;// = null;
+    private Vector usedIDVector;// = null;
     private int userPasswordListElement;
     private String userID;
     
@@ -24,8 +24,8 @@ public class CheckUserAndPasswords
      * 1) username exists
      * 2) the password matches the username
      * Will return false in all other circumstances
-     * @param userName
-     * @param inputPassword
+     * @param userName String
+     * @param inputPassword String
      * @return boolean
      */
     public boolean checkUserNameAndPassword(String userName, String inputPassword)
@@ -36,7 +36,7 @@ public class CheckUserAndPasswords
     }
     /**
      * method to hash a string
-     * @param unhashedPassword
+     * @param unhashedPassword String
      * @return String
      */
     public String hashPassword(String unhashedPassword)
@@ -45,7 +45,7 @@ public class CheckUserAndPasswords
     }
     /**
      * check if user name already exists
-     * @param userName
+     * @param userName String
      * @return boolean
      */
     public boolean checkUserNameExist(String userName)
@@ -54,7 +54,7 @@ public class CheckUserAndPasswords
     }
     /**
      * Checks for the next available userID for a spefic PersonType
-     * @param personType
+     * @param personType String
      * @return String
      */
     public String checkForNextAvailableUserID(String personType)
@@ -64,7 +64,7 @@ public class CheckUserAndPasswords
         System.out.println(userPasswordList[0]);
         if(userPasswordList[0] != null)
         {
-            usedIDArray = new Vector();
+            usedIDVector = new Vector();
             getCurrentUsedID(personType);
             freeNumber = createNextUserID();
         }
@@ -78,7 +78,7 @@ public class CheckUserAndPasswords
         while (!freeNumber)
         {
             nextFreeNumber++;
-            freeNumber = !usedIDArray.contains(nextFreeNumber);
+            freeNumber = !usedIDVector.contains(nextFreeNumber);
         }
         String freeNumberString = String.valueOf(nextFreeNumber);
         return ("0000" + freeNumberString).substring(freeNumberString.length());
@@ -91,7 +91,7 @@ public class CheckUserAndPasswords
             if (personType.equals(userPasswordList[x].substring(0,1)))
             {
                 int y = Integer.parseInt(userPasswordList[x].substring(1,5));
-                usedIDArray.add(y);
+                usedIDVector.add(y);
             }
         }
     }
