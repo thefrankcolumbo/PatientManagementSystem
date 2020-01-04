@@ -1,14 +1,15 @@
 package viewData;
 
-import soft252amartin.ERequiredData;
+import soft252amartin.ERequiredDataWithinFile;
 import static fileManagement.ReadFile.getLineContainingReturnList;
+import static fileManagement.ReadFile.readFileContent;
 import java.util.ArrayList;
 import java.util.List;
 import soft252amartin.EPersonType;
 
 public class ViewData 
 {
-    protected static String[] getData(String userID, EPersonType personType, ERequiredData requiredData)
+    protected static String[] getData(String userID, EPersonType personType, ERequiredDataWithinFile requiredData)
     {
         List<String> contents = new ArrayList<>();
         String[] data;
@@ -23,6 +24,23 @@ public class ViewData
         else
         {
             String[] noData = {"NO " + requiredData.toString() + "'S"};
+            return noData;
+        }
+    }
+    protected static String[] getMedicineList(String path)
+    {
+        List<String> contents = new ArrayList<>();
+        String[] data;
+        contents = readFileContent(path);
+        int lengthOfList = contents.size();
+        if (lengthOfList != 0)
+        {
+            data = convertListToStringArray(contents, lengthOfList);
+            return data;
+        }
+        else
+        {
+            String[] noData = {"NO MEDICINES"};
             return noData;
         }
     }
