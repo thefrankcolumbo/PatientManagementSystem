@@ -1,9 +1,8 @@
-
-package viewData;
-
+package soft252amartin;
 
 public enum ERequiredData 
 {
     NOTES,
-    REVIEW
+    REVIEW,
+    MESSAGE
 }
