@@ -1,12 +1,18 @@
-
 package changeData;
 
-import static changeData.AddDataToUserFile.addToFile;
+import static changeData.AddDataToFile.addToFile;
 import soft252amartin.EPersonType;
-
 
 public class AddDataToDoctorFile 
 {
+    /**
+     * Method to add data to the next line of a current doctors user file
+     * Returns True if successful.
+     * Returns False if unsuccessful or file doesn't exist.
+     * @param userID String
+     * @param newData String[]
+     * @return boolean
+     */
     public static boolean addDoctorReview(String userID, String[] newData)
     {
         String cleanedData = cleanNewData(newData);
