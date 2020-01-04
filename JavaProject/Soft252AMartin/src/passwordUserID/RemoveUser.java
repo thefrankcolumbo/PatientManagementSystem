@@ -13,6 +13,14 @@ import soft252amartin.EPersonType;
 
 public class RemoveUser 
 {
+    /**
+     * Method to remove a user.
+     * will return true on successful removal
+     * This is a permanent removal.
+     * @param userID String
+     * @param personType EPersonType
+     * @return boolean
+     */
     public static boolean removeUser(String userID, EPersonType personType)
     {
         boolean userRemoved = removeUserFromUserIDAndPasswordTable(userID);
@@ -54,7 +62,7 @@ public class RemoveUser
     }
     private static void removeUserData(String userID, EPersonType personType)
     {
-        File file = new File("res\\" + personType + "\\" + userID + ".txt");
+        File file = new File("res\\" + personType + "\\" + userID + ".csv");
         file.delete();
     }
     private static boolean checkUserHasBeenDeletedFromUserIDPasswordTable(String UserID)
@@ -64,7 +72,7 @@ public class RemoveUser
     }
     private static boolean checkUserDataFileHasBeenDeleted(String userID, EPersonType personType)
     {
-        File file = new File("res\\" + personType + "\\" + userID + ".txt");
+        File file = new File("res\\" + personType + "\\" + userID + ".csv");
         return !file.exists();
     }
 }
