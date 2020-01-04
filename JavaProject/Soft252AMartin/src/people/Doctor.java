@@ -5,7 +5,7 @@ import static changeData.AddDataToPatientFile.addPatientReview;
 import static viewData.ViewPatientNotes.viewPatientNotes;
 
 public class Doctor extends Person 
-        implements IViewPatientHistory, IViewAppointment, ICreateAppointment, IMessageSecretary
+        implements IViewPatientHistory, IViewAppointment, ICommonDoctorSecretaryMethods, IMessageSecretary
 {
     public Doctor(String UniqueIdentifier)
     {
@@ -72,6 +72,16 @@ public class Doctor extends Person
     public boolean messageSecretary(String message) 
     {
         return changeData.MessageSecretary.addMessage(message);
+    }
+    /**
+     * Method to get a list of all medicines and their details.
+     * If there are no medicines then an array of one element is returned containing "NO MEDICINES"
+     * @return String[]
+     */
+    @Override
+    public String[] getMedicineList() 
+    {
+        return viewData.ViewMedicineList.getMedicinesList();
     }
     
 }
