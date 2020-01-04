@@ -4,5 +4,5 @@ package people;
 
 public interface IViewPatientHistory 
 {
-    public void viewPatientHistory();
+    public String[] viewPatientHistory(String userID);
 }
