@@ -5,7 +5,7 @@ import passwordUserID.RemoveUser;
 import soft252amartin.EPersonType;
 
 
-public class Secretary extends Person implements ICreateAppointment, ICreateAccount
+public class Secretary extends Person implements ICommonDoctorSecretaryMethods, ICreateAccount
 {
     public Secretary(String UniqueIdentifier)
     {
@@ -65,6 +65,17 @@ public class Secretary extends Person implements ICreateAppointment, ICreateAcco
     @Override
     public void createAccount(String givenName, String surname, String addressLine1, String addressLine2, String addressLine3, String addressPostcode, String DOB) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * Method to get a list of all medicines and their details.
+     * If there are no medicines then an array of one element is returned containing "NO MEDICINES"
+     * @return String[]
+     */
+    @Override
+    public String[] getMedicineList() 
+    {
+        return viewData.ViewMedicineList.getMedicinesList();
     }
 
 }
