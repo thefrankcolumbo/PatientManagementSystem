@@ -1,4 +1,3 @@
-
 package people;
 
 import passwordUserID.MakeUser;
@@ -13,10 +12,6 @@ public class Secretary extends Person implements ICreateAppointment, ICreateAcco
         super(UniqueIdentifier, "Secretary");
         
     }
-    private void approvePatientAccount()
-    {
-        
-    }
     private void giveMedication()
     {
         
@@ -26,19 +21,19 @@ public class Secretary extends Person implements ICreateAppointment, ICreateAcco
         
     }
     /**
-     * Method to create a new Patient. Password must be in plain text.
+     * Method to create a new Patient. 
      * Parameter DOB must be in "dd/MM/YYYY" format.
      * Parameter Password must be in plain text.
      * If Patient created successfully then Method will return true.
      * Else Method will return false.
-     * @param givenName
-     * @param surname
-     * @param addressLine1
-     * @param addressLine2
-     * @param addressLine3
-     * @param addressPostcode
-     * @param DOB
-     * @param password
+     * @param givenName String
+     * @param surname String
+     * @param addressLine1 String
+     * @param addressLine2 String
+     * @param addressLine3 String
+     * @param addressPostcode String
+     * @param DOB String
+     * @param password String
      * @return boolean
      */
     public String createPatient(String givenName, String surname, String addressLine1, 
@@ -54,7 +49,7 @@ public class Secretary extends Person implements ICreateAppointment, ICreateAcco
      * If doctor removal is unsuccessful then Method will return False.
      * If userID for Patient does not exist then Method will return False.
      * Else Method will return True.
-     * @param userID
+     * @param userID String
      * @return boolean
      */
     public boolean removePatient(String userID)
