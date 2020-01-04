@@ -1,9 +1,8 @@
 
 package passwordUserID;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
+import static fileManagement.AmendFile.appendStringToFile;
+import static fileManagement.MakeFile.makeFile;
 import soft252amartin.EPersonType;
 
 public class MakeUser 
@@ -68,21 +67,7 @@ public class MakeUser
     private static void createDataFile(String dataString, String userID, String personType)
     {
         String path = "res\\" + personType + "\\" + userID + ".csv";
-        File file = new File(path);
-        try 
-        {
-            file.createNewFile();
-            FileWriter fw = new FileWriter(file.getAbsoluteFile());
-            BufferedWriter bw = new BufferedWriter(fw);
-            
-            bw.write(dataString);
-            bw.close();
-        } 
-        catch (Exception e) 
-        {
-            System.out.println("catch at createDataFile " + e);
-            // log file ??
-        }
+        makeFile(dataString, path, "");
     }
     private static void createUserIDAndHashedPassword(String userID, String password)
     {
@@ -93,17 +78,7 @@ public class MakeUser
     private static void addUserAndPasswordToUserPasswordTable(String userID, String hashedPassword)
     {
         String lineToBeWritten = userID.trim() + " " + hashedPassword.trim();
-        try 
-        {
-            BufferedWriter bw = new BufferedWriter(new FileWriter("res\\resources\\userIDPasswordTable.txt", true));
-            
-            bw.write(lineToBeWritten);
-            bw.newLine();
-            bw.flush();
-        } 
-        catch (Exception e) 
-        {
-            System.out.println("catch at addUserAndPasswordToUserPasswordTable");
-        }
+        String path = "res\\resources\\userIDPasswordTable.txt";
+        appendStringToFile(path, lineToBeWritten);
     }
 }
