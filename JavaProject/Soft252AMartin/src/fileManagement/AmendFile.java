@@ -16,13 +16,13 @@ import java.util.stream.Collectors;
 public class AmendFile 
 {
     /**
-     * Apends a string starting on the next line to a .txt file.
+     * Appends a string starting on the next line to a .txt file.
      * directoryPath MUST be full path and file name:
      * e.g. /tmp/afolder/afile.txt
      * @param directoryPath
      * @param stringText 
      */
-    public static void apendStringToFile(String directoryPath, String stringText)
+    public static void appendStringToFile(String directoryPath, String stringText)
     {
         try 
         {
@@ -61,5 +61,17 @@ public class AmendFile
             System.out.println("stringText: " + stringText);
             System.out.println("END ERROR JavaFileManagement.FileManagement.removeLine");
         }
+    }
+    /**
+     * Method to remove the contents of a file.
+     * Parameter directoryPath must be full path and file name
+     * e.g. /tempfolder/anotherfolder/file.txt
+     * @param directoryPath 
+     */
+    public static void removeFileContents(String directoryPath)
+    {
+        File file = new File(directoryPath);
+        file.delete();
+        MakeFile.makeFile(directoryPath);
     }
 }
