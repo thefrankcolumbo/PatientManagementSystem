@@ -2,7 +2,7 @@ package changeData;
 
 import soft252amartin.EPersonType;
 import static fileManagement.AmendFile.appendStringToFile;
-import soft252amartin.ERequiredData;
+import soft252amartin.ERequiredDataWithinFile;
 
 public class AddDataToFile 
 {
@@ -40,7 +40,7 @@ public class AddDataToFile
      * @param personType
      * @return 
      */
-    protected static boolean addToFile(String newData, ERequiredData requiredData, EPersonType personType)
+    protected static boolean addToFile(String newData, ERequiredDataWithinFile requiredData, EPersonType personType)
     {
         //make path
         String path = ("res\\" + personType + "\\" + requiredData.toString() + ".txt");
@@ -55,5 +55,33 @@ public class AddDataToFile
             //log file ??
             return false;
         }
+    }
+    protected static boolean addNewMedicine(String medicineName, String quantity, 
+            String unitDefinition, String medicineNotes, String path)
+    {
+        String[] tempArray = {medicineName,quantity,unitDefinition,medicineNotes};
+        String newData = makeCSVFormat(tempArray);
+        try 
+        {
+            //append to file
+            appendStringToFile(path, newData);
+            return true;
+        } 
+        catch (Exception e) 
+        {
+            //log file ??
+            return false;
+        }
+    }
+    private static String makeCSVFormat(String[] array)
+    {
+        String data= "";
+        String comma = ",";
+        for (String element: array)
+        {
+            data = data + element + comma;
+        }
+        //removes the last comma
+        return data.substring(0, data.length() - 1);
     }
 }
