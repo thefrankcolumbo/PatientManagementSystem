@@ -3,6 +3,7 @@ package people;
 import passwordUserID.MakeUser;
 import passwordUserID.RemoveUser;
 import soft252amartin.EPersonType;
+import static changeData.UpdateMedicine.upDateMedicineQuantity;
 
 
 public class Secretary extends Person implements ICommonDoctorSecretaryMethods, ICreateAccount
@@ -11,6 +12,17 @@ public class Secretary extends Person implements ICommonDoctorSecretaryMethods, 
     {
         super(UniqueIdentifier, "Secretary");
         
+    }
+    /**
+     * Method to change the quantity of a medicine in the medicine file list.
+     * Will return true if quantity changed.
+     * @param medicineName String
+     * @param newQuantity String
+     * @return boolean
+     */
+    public boolean changeMedicineQuantity(String medicineName, String newQuantity)
+    {
+        return upDateMedicineQuantity(medicineName, newQuantity);
     }
     private void giveMedication()
     {
@@ -56,7 +68,6 @@ public class Secretary extends Person implements ICommonDoctorSecretaryMethods, 
     {
         return RemoveUser.removeUser(userID, EPersonType.Patient);
     }
-
     @Override
     public void createAppointment() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -66,7 +77,6 @@ public class Secretary extends Person implements ICommonDoctorSecretaryMethods, 
     public void createAccount(String givenName, String surname, String addressLine1, String addressLine2, String addressLine3, String addressPostcode, String DOB) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
     /**
      * Method to get a list of all medicines and their details.
      * If there are no medicines then an array of one element is returned containing "NO MEDICINES"
