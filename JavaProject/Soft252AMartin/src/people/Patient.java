@@ -5,7 +5,8 @@ import static changeData.AddDataToDoctorFile.addDoctorReview;
 import static viewData.ViewDoctorReviews.getDoctorReview;
 import static viewData.ViewPatientNotes.viewPatientNotes;
 
-public class Patient extends Person implements IViewDoctorRatings, IViewPatientHistory, IViewAppointment
+public class Patient extends Person 
+        implements IViewDoctorRatings, IViewPatientHistory, IViewAppointment, IMessageSecretary
 {
     public Patient(String UniqueIdentifier)
     {
@@ -63,7 +64,20 @@ public class Patient extends Person implements IViewDoctorRatings, IViewPatientH
     }
 
     @Override
-    public void viewAppointment() {
+    public void viewAppointment() 
+    {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    /**
+     * Method to send message to all Secretaries.
+     * Return true if message sent.
+     * Return false if unsuccessful.
+     * @param message
+     * @return boolean
+     */
+    @Override
+    public boolean messageSecretary(String message) 
+    {
+        return changeData.MessageSecretary.addMessage(message);
     }
 }
