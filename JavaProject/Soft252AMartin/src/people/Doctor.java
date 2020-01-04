@@ -2,7 +2,7 @@
 package people;
 
 import static changeData.AddDataToPatientFile.addPatientReview;
-
+import static viewData.ViewPatientNotes.viewPatientNotes;
 
 public class Doctor extends Person implements IViewPatientHistory, IViewAppointment, ICreateAppointment
 {
@@ -41,8 +41,9 @@ public class Doctor extends Person implements IViewPatientHistory, IViewAppointm
     }
     
     @Override
-    public void viewPatientHistory() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String[] viewPatientHistory(String userID) 
+    {
+        return viewPatientNotes(userID);
     }
 
     @Override
