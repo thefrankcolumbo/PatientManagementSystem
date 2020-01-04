@@ -6,9 +6,24 @@ import java.io.File;
 import java.io.FileWriter;
 import soft252amartin.EPersonType;
 
-
 public class MakeUser 
 {
+    /**
+     * Method to create a new user. 
+     * The new userID will be returned.
+     * A new entry onto the userID password table will be created.
+     * Password must be in plain text.
+     * @param givenName String
+     * @param surname String
+     * @param addressLine1 String
+     * @param addressLine2 String
+     * @param addressLine3 String
+     * @param addressPostcode String
+     * @param DOB String
+     * @param personType EPersonType
+     * @param password String
+     * @return String
+     */
     public static String makeAUser(String givenName, String surname, String addressLine1, 
             String addressLine2, String addressLine3, String addressPostcode, 
             String DOB, EPersonType personType, String password)
@@ -41,15 +56,25 @@ public class MakeUser
                 + "," + userID);
         return dataString;
     }
+    private static String[] cleanData (String[] dataArray)
+    {
+        for (String element: dataArray)
+        {
+            element = element.replace(",", "");
+            element = element.replace("\\", "");
+        }
+        return dataArray;
+    }
     private static void createDataFile(String dataString, String userID, String personType)
     {
-        String path = "res\\" + personType + "\\" + userID + ".txt";
+        String path = "res\\" + personType + "\\" + userID + ".csv";
         File file = new File(path);
         try 
         {
             file.createNewFile();
             FileWriter fw = new FileWriter(file.getAbsoluteFile());
             BufferedWriter bw = new BufferedWriter(fw);
+            
             bw.write(dataString);
             bw.close();
         } 
