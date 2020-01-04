@@ -19,15 +19,15 @@ public class Administrator extends Person implements IViewDoctorRatings, ICreate
      * Parameter Password must be in plain text.
      * If Administrator created successfully then Method will return true.
      * Else Method will return false.
-     * @param givenName
-     * @param surname
-     * @param addressLine1
-     * @param addressLine2
-     * @param addressLine3
-     * @param addressPostcode
-     * @param DOB
-     * @param password
-     * @return boolean
+     * @param givenName String
+     * @param surname String
+     * @param addressLine1 String
+     * @param addressLine2 String
+     * @param addressLine3 String
+     * @param addressPostcode String
+     * @param DOB String
+     * @param password String
+     * @return String userID
      */
     public String createAdministrator(String givenName, String surname, String addressLine1, 
             String addressLine2, String addressLine3, String addressPostcode, 
@@ -41,13 +41,16 @@ public class Administrator extends Person implements IViewDoctorRatings, ICreate
      * Method to remove a current Administrator.
      * If doctor removal is unsuccessful then Method will return False.
      * If userID for doctor does not exist then Method will return False.
+     * An attempt to remove the current administrator will return false.
      * Else Method will return True.
-     * @param userID
+     * @param userID String
      * @return boolean
      */
     public boolean removeAdministrator(String userID)
     {
-        return RemoveUser.removeUser(userID, EPersonType.Administrator);
+        if(userID != this.uniqueIdentifier) 
+            return RemoveUser.removeUser(userID, EPersonType.Administrator);
+        else return false;
     }
     /**
      * Method to create a new Doctor.
@@ -55,14 +58,14 @@ public class Administrator extends Person implements IViewDoctorRatings, ICreate
      * Parameter Password must be in plain text.
      * If Doctor created successfully then Method will return true.
      * Else Method will return false.
-     * @param givenName
-     * @param surname
-     * @param addressLine1
-     * @param addressLine2
-     * @param addressLine3
-     * @param addressPostcode
-     * @param DOB
-     * @param password
+     * @param givenName String
+     * @param surname String
+     * @param addressLine1 String
+     * @param addressLine2 String
+     * @param addressLine3 String
+     * @param addressPostcode String
+     * @param DOB String
+     * @param password String
      * @return boolean
      */
     public String createDoctor(String givenName, String surname, String addressLine1, 
@@ -95,14 +98,14 @@ public class Administrator extends Person implements IViewDoctorRatings, ICreate
      * Parameter Password must be in plain text.
      * If Secretary created successfully then Method will return true.
      * Else Method will return false.
-     * @param givenName
-     * @param surname
-     * @param addressLine1
-     * @param addressLine2
-     * @param addressLine3
-     * @param addressPostcode
-     * @param DOB
-     * @param password
+     * @param givenName String
+     * @param surname String
+     * @param addressLine1 String
+     * @param addressLine2 String
+     * @param addressLine3 String
+     * @param addressPostcode String
+     * @param DOB String
+     * @param password String
      * @return boolean
      */
     public String createSecretary(String givenName, String surname, 
@@ -118,7 +121,7 @@ public class Administrator extends Person implements IViewDoctorRatings, ICreate
      * If Secretary removal is unsuccessful then Method will return False.
      * If userID for Secretary does not exist then Method will return False.
      * Else Method will return True.
-     * @param userID
+     * @param userID String
      * @return boolean
      */
     public boolean removeSecretary(String userID)
