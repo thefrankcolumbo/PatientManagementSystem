@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package viewData;
 
+import soft252amartin.ERequiredData;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -13,11 +9,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import soft252amartin.EPersonType;
 
-/**
- *
- * @author HP
- */
-public class ViewDataTest {
+public class ViewDataTest 
+{
     
     public ViewDataTest() {
     }
