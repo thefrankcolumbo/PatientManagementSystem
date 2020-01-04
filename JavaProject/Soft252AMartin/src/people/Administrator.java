@@ -4,6 +4,7 @@ package people;
 import passwordUserID.MakeUser;
 import passwordUserID.RemoveUser;
 import soft252amartin.EPersonType;
+import static viewData.ViewDoctorReviews.getDoctorReview;
 
 public class Administrator extends Person implements IViewDoctorRatings, ICreateAccount
 {
@@ -129,8 +130,9 @@ public class Administrator extends Person implements IViewDoctorRatings, ICreate
         
     }
     @Override
-    public void viewDoctorRatings() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String[] viewDoctorRatings(String userID) 
+    {
+        return getDoctorReview(userID);
     }
 
     @Override

@@ -2,6 +2,8 @@
 package people;
 
 import static changeData.AddDataToDoctorFile.addDoctorReview;
+import viewData.ViewDoctorReviews;
+import static viewData.ViewDoctorReviews.getDoctorReview;
 import static viewData.ViewPatientNotes.viewPatientNotes;
 
 
@@ -39,8 +41,9 @@ public class Patient extends Person implements IViewDoctorRatings, IViewPatientH
     }
 
     @Override
-    public void viewDoctorRatings() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String[] viewDoctorRatings(String userID) 
+    {
+        return getDoctorReview(userID);
     }
 
     @Override
