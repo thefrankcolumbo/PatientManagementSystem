@@ -26,7 +26,7 @@ public class AmendFile
     {
         try 
         {
-            String text = "\n" + stringText;
+            String text = "\r\n" + stringText;
             Files.write(Paths.get(directoryPath), text.getBytes(), StandardOpenOption.APPEND);
         }
         catch (IOException e) 
