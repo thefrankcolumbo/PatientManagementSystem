@@ -1,17 +1,27 @@
 
 package people;
 
+import static changeData.AddDataToPatientFile.addPatientReview;
+
 
 public class Doctor extends Person implements IViewPatientHistory, IViewAppointment, ICreateAppointment
 {
     public Doctor(String UniqueIdentifier)
     {
-        super(UniqueIdentifier);
+        super(UniqueIdentifier, "Doctor");
         
     }
-    private void makeNotes()
+    /**
+     * Method to add patient notes to the patients data file.
+     * Returns True if amendment successfully added.
+     * Returns False if amendment fails.
+     * @param userID String
+     * @param newData String
+     * @return boolean
+     */
+    public boolean makeNotes(String userID, String newData)
     {
-        
+        return addPatientReview(userID, newData);
     }
     private void proposeAppointment()
     {
