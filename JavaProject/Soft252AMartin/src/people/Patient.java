@@ -2,10 +2,8 @@
 package people;
 
 import static changeData.AddDataToDoctorFile.addDoctorReview;
-import viewData.ViewDoctorReviews;
 import static viewData.ViewDoctorReviews.getDoctorReview;
 import static viewData.ViewPatientNotes.viewPatientNotes;
-
 
 public class Patient extends Person implements IViewDoctorRatings, IViewPatientHistory, IViewAppointment
 {
@@ -39,17 +37,29 @@ public class Patient extends Person implements IViewDoctorRatings, IViewPatientH
     {
         
     }
-
+    /**
+     * Method to get the reviews of a spefic Doctor.
+     * Returns an array of reviews.
+     * If there is no reviews then an array with 1 element will be returned containing "NO REVIEW'S"
+     * @param userID String
+     * @return String[]
+     */
     @Override
     public String[] viewDoctorRatings(String userID) 
     {
         return getDoctorReview(userID);
     }
-
+    /**
+     * Method to get this patients history.
+     * Will return an array of notes.
+     * If there is no notes then an array with 1 element will be returned containing "NO NOTES'S"
+     * @param userID this patients UserID.
+     * @return String[]
+     */
     @Override
     public String[] viewPatientHistory(String userID) 
     {
-        return viewPatientNotes(userID);
+        return viewPatientNotes(this.uniqueIdentifier);
     }
 
     @Override
