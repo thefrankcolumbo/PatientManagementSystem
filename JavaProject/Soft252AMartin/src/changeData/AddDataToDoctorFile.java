@@ -1,12 +1,14 @@
 
 package changeData;
 
+import static changeData.AddDataToUserFile.addToFile;
+import soft252amartin.EPersonType;
+
 
 public class AddDataToDoctorFile 
 {
-    public static void addDoctorReview()
+    public static boolean addDoctorReview(String userID, String newData)
     {
-        //doctor can add notes
-        //AddDataToUserFile.addToFile();
+        return addToFile(userID, newData, EPersonType.Doctor);
     }
 }

@@ -6,12 +6,20 @@ import soft252amartin.EPersonType;
 
 public class AddDataToUserFile 
 {
-    protected static void addToFile(String userID, String newData, EPersonType personType)
+    protected static boolean addToFile(String userID, String newData, EPersonType personType)
     {
         //make path
         String path = ("res\\" + personType + "\\" + userID + ".csv");
-        //append to file
-        apendStringToFile(path, newData);
+        try 
+        {
+            //append to file
+            apendStringToFile(path, newData);
+            return true;
+        } 
+        catch (Exception e) 
+        {
+            //log file ??
+            return false;
+        }
     }
-    
 }
