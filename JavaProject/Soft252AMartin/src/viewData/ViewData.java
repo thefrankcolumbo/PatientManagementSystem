@@ -1,6 +1,6 @@
-
 package viewData;
 
+import soft252amartin.ERequiredData;
 import static fileManagement.ReadFile.getLineContainingReturnList;
 import java.util.ArrayList;
 import java.util.List;
