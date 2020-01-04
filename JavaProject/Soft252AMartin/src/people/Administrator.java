@@ -129,6 +129,13 @@ public class Administrator extends Person implements IViewDoctorRatings, ICreate
     {
         
     }
+    /**
+     * Method to get the reviews of a spefic Doctor.
+     * Returns an array of reviews.
+     * If there is no reviews then an array with 1 element will be returned containing "NO REVIEW'S"
+     * @param userID String
+     * @return String[]
+     */
     @Override
     public String[] viewDoctorRatings(String userID) 
     {
