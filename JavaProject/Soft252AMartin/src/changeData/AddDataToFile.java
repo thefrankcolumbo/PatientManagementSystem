@@ -2,6 +2,10 @@ package changeData;
 
 import soft252amartin.EPersonType;
 import static fileManagement.AmendFile.appendStringToFile;
+import static fileManagement.AmendFile.removeLine;
+import static fileManagement.ReadFile.getLineContainingReturnList;
+import java.util.ArrayList;
+import java.util.List;
 import soft252amartin.ERequiredDataWithinFile;
 
 public class AddDataToFile 
@@ -73,6 +77,21 @@ public class AddDataToFile
             return false;
         }
     }
+    protected static boolean changeMedicineDetails(String medicineName, String newQuantity, String path)
+    {
+        List dataLine = new ArrayList<>();
+        String[] newDataLine;
+        boolean success = checkMedicineName(medicineName);
+        if(success) 
+        {
+            dataLine = getLineContainingReturnList(path, medicineName);
+            newDataLine = updateQuantity(dataLine, newQuantity);
+            removeLine(path, medicineName);
+            success = addNewMedicine(newDataLine[0], newDataLine[1], 
+                    newDataLine[2], newDataLine[3], path);
+        }
+        return success;
+    }
     private static String makeCSVFormat(String[] array)
     {
         String data= "";
@@ -83,5 +102,17 @@ public class AddDataToFile
         }
         //removes the last comma
         return data.substring(0, data.length() - 1);
+    }
+    private static String[] updateQuantity(List dataLine, String newQuantity)
+    {
+        String[] tempArray = dataLine.get(0).toString().split(",");
+        tempArray[1] = newQuantity;
+        return tempArray;
+    }
+    ////////////////////////////////////////////////////////////////////////////
+    // TO BE UPDATED ///////////////////////////////////////////////////////////
+    private static boolean checkMedicineName(String name)
+    {
+        return true;
     }
 }
