@@ -4,7 +4,8 @@ package people;
 import static changeData.AddDataToPatientFile.addPatientReview;
 import static viewData.ViewPatientNotes.viewPatientNotes;
 
-public class Doctor extends Person implements IViewPatientHistory, IViewAppointment, ICreateAppointment
+public class Doctor extends Person 
+        implements IViewPatientHistory, IViewAppointment, ICreateAppointment, IMessageSecretary
 {
     public Doctor(String UniqueIdentifier)
     {
@@ -39,7 +40,12 @@ public class Doctor extends Person implements IViewPatientHistory, IViewAppointm
     {
         
     }
-    
+    /**
+     * Method to view a patients history.
+     * Returns an array of history events.
+     * @param userID String
+     * @return String[]
+     */
     @Override
     public String[] viewPatientHistory(String userID) 
     {
@@ -54,6 +60,18 @@ public class Doctor extends Person implements IViewPatientHistory, IViewAppointm
     @Override
     public void createAppointment() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    /**
+     * Method to send message to all Secretaries.
+     * Return true if message sent.
+     * Return false if unsuccessful.
+     * @param message
+     * @return boolean
+     */
+    @Override
+    public boolean messageSecretary(String message) 
+    {
+        return changeData.MessageSecretary.addMessage(message);
     }
     
 }
