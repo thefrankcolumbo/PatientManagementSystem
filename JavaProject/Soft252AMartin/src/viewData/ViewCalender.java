@@ -16,6 +16,6 @@ public class ViewCalender
     }
     private static String getPath()
     {
-        return "res\\Appoinments\\Appointment.csv";
+        return "res\\Appoinments\\Appointments.csv";
     }
 }
