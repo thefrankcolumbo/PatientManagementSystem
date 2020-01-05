@@ -1,4 +1,3 @@
-
 package people;
 
 import java.io.BufferedReader;
