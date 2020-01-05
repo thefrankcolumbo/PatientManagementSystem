@@ -64,16 +64,17 @@ public class DoctorTest {
      */
     @Test
     public void testPrescribeMedication() {
-        System.out.println("prescribeMedication");
-        String medicineName = "";
-        String quantity = "";
-        String timeFrame = "";
-        String notes = "";
-        String patientID = "";
-        Doctor instance = null;
-        boolean expResult = false;
-        boolean result = instance.prescribeMedication(medicineName, quantity, timeFrame, notes, patientID);
-        assertEquals(expResult, result);
+        System.out.println("Test of prescribeMedication method, of class Doctor. TBCO");
+        // set up variables
+//        String medicineName = "";
+//        String quantity = "";
+//        String timeFrame = "";
+//        String notes = "";
+//        String patientID = "";
+//        Doctor instance = new Doctor("D0001");
+//        
+//        boolean result = instance.prescribeMedication(medicineName, quantity, timeFrame, notes, patientID);
+//        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -84,15 +85,25 @@ public class DoctorTest {
     @Test
     public void testCreateNewMedicine() {
         System.out.println("createNewMedicine");
-        String medicineName = "";
-        String unitDefinition = "";
-        String medicineNotes = "";
-        Doctor instance = null;
-        boolean expResult = false;
+        // set up variables
+        String medicineName = "testtest";
+        String unitDefinition = "kg";
+        String medicineNotes = "testing notes";
+        String allTestData = medicineName + "," + "0" + "," + unitDefinition + "," + medicineNotes;
+        String path = "res\\Medication\\medicine.csv";
+        Doctor instance = new Doctor("D0001");
+        // run method
         boolean result = instance.createNewMedicine(medicineName, unitDefinition, medicineNotes);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // check to see if test medicine has been added
+        List conformation = new ArrayList<>();
+        conformation = fileManagement.ReadFile.getLineContainingReturnList(path, medicineName);
+        boolean conformationResult = false;
+        if(conformation.get(0).equals(allTestData)) conformationResult = true;
+        System.out.println(conformation.get(0));
+        //test
+        assertEquals(conformationResult, result);
+        // now remove the test data
+        if(conformationResult) fileManagement.AmendFile.removeLine(path, medicineName);
     }
 
     /**
