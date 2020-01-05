@@ -15,6 +15,7 @@ public class MessageSecretary
     */
    public static boolean addMessage(String newData)
    {
-       return addToFile(newData, ERequiredDataWithinFile.MESSAGE, EPersonType.Secretary);
+       String newString = ERequiredDataWithinFile.MESSAGE.toString() + "," + newData;
+       return addToFile(newString, ERequiredDataWithinFile.MESSAGE, EPersonType.Secretary);
    }
 }
