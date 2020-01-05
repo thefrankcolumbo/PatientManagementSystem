@@ -9,6 +9,23 @@ import soft252amartin.EPersonType;
 
 public class ViewData 
 {
+    protected static String[] getMessages(EPersonType personType, String path)
+    {
+        String[] data;
+        List<String> contents = new ArrayList<>();
+        contents = readFileContent(path);
+        int lengthOfList = contents.size();
+        if (lengthOfList != 0)
+        {
+            data = convertListToStringArray(contents, lengthOfList);
+            return data;
+        }
+        else
+        {
+            String[] noData = {"NO MESSAGES"};
+            return noData;
+        }
+    }
     protected static String[] getData(String userID, EPersonType personType, ERequiredDataWithinFile requiredData)
     {
         List<String> contents = new ArrayList<>();
@@ -44,6 +61,7 @@ public class ViewData
             return noData;
         }
     }
+    
     private static String[] convertListToStringArray(List list, int sizeOfList)
     {
         String[] fred = new String[sizeOfList];
