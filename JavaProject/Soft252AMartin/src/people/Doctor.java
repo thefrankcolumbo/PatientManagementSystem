@@ -119,7 +119,7 @@ public class Doctor extends Person
     @Override
     public boolean messageSecretary(String message) 
     {
-        return changeData.MessageSecretary.addMessage(message);
+        return addMessage(message);
     }
     /**
      * Method to get a list of all medicines and their details.
