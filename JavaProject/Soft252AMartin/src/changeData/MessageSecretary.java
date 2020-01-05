@@ -1,9 +1,8 @@
-
 package changeData;
 
 import static changeData.AddDataToFile.addToFile;
 import soft252amartin.EPersonType;
-import soft252amartin.ERequiredData;
+import soft252amartin.ERequiredDataWithinFile;
 
 public class MessageSecretary 
 {
@@ -16,6 +15,6 @@ public class MessageSecretary
     */
    public static boolean addMessage(String newData)
    {
-       return addToFile(newData, ERequiredData.MESSAGE, EPersonType.Secretary);
+       return addToFile(newData, ERequiredDataWithinFile.MESSAGE, EPersonType.Secretary);
    }
 }
