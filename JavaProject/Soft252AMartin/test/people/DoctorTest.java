@@ -30,7 +30,8 @@ public class DoctorTest {
     @After
     public void tearDown() {
     }
-
+    ////////////////////////////////////////////////////////////////////////////
+    //////////Passed ///////////////////////////////////////////////////////////
     /**
      * Test of makeNotes method, of class Doctor.
      */
@@ -58,27 +59,10 @@ public class DoctorTest {
         // remove test notes
         if(conformationResult) fileManagement.AmendFile.removeLine(path, testString);
     }
-
-    /**
-     * Test of prescribeMedication method, of class Doctor.
-     */
-    @Test
-    public void testPrescribeMedication() {
-        System.out.println("Test of prescribeMedication method, of class Doctor. TBCO");
-        // set up variables
-//        String medicineName = "";
-//        String quantity = "";
-//        String timeFrame = "";
-//        String notes = "";
-//        String patientID = "";
-//        Doctor instance = new Doctor("D0001");
-//        
-//        boolean result = instance.prescribeMedication(medicineName, quantity, timeFrame, notes, patientID);
-//        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
+    //////////Passed ///////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    //////////Passed ///////////////////////////////////////////////////////////
     /**
      * Test of createNewMedicine method, of class Doctor.
      */
@@ -89,23 +73,30 @@ public class DoctorTest {
         String medicineName = "testtest";
         String unitDefinition = "kg";
         String medicineNotes = "testing notes";
-        String allTestData = medicineName + "," + "0" + "," + unitDefinition + "," + medicineNotes;
+        String allTestData = medicineName + "," + "0" + "," + unitDefinition 
+                + "," + medicineNotes;
         String path = "res\\Medication\\medicine.csv";
         Doctor instance = new Doctor("D0001");
         // run method
-        boolean result = instance.createNewMedicine(medicineName, unitDefinition, medicineNotes);
+        boolean result = instance.createNewMedicine(medicineName, 
+                unitDefinition, medicineNotes);
         // check to see if test medicine has been added
         List conformation = new ArrayList<>();
-        conformation = fileManagement.ReadFile.getLineContainingReturnList(path, medicineName);
+        conformation = fileManagement.ReadFile.getLineContainingReturnList
+        (path, medicineName);
         boolean conformationResult = false;
         if(conformation.get(0).equals(allTestData)) conformationResult = true;
         System.out.println(conformation.get(0));
         //test
         assertEquals(conformationResult, result);
         // now remove the test data
-        if(conformationResult) fileManagement.AmendFile.removeLine(path, medicineName);
+        if(conformationResult) fileManagement.AmendFile.removeLine
+        (path, medicineName);
     }
-
+    //////////Passed ///////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    //////////Passed ///////////////////////////////////////////////////////////
     /**
      * Test of askSecretaryToOrderMedicine method, of class Doctor.
      */
@@ -129,46 +120,31 @@ public class DoctorTest {
         // remove test notes
         if(conformationResult) fileManagement.AmendFile.removeLine(path, testString);
     }
-
+    //////////Passed ///////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    //////////Passed ///////////////////////////////////////////////////////////
     /**
      * Test of viewPatientHistory method, of class Doctor.
      */
     @Test
     public void testViewPatientHistory() {
-        System.out.println("viewPatientHistory");
-        String userID = "";
-        Doctor instance = null;
-        String[] expResult = null;
+        System.out.println("Test of viewPatientHistory method, of class Doctor.");
+        String userID = "P1000";
+        Doctor instance = new Doctor("D0001");
+        String[] expResult = {"NOTES,Lecter,Has paranoia that people are going "
+                + "to be murdered. Also is donning colourful suede footwear "
+                + "white suit and is eating cheeseburgers. Suspect King Complex "
+                + "dieases","NOTES,Jekyll,Has paranoia that people are going to "
+                + "be murdered. Is also weeping and has RSI casued by hours of "
+                + "tearing up holiday photos. Suspect Broken Heart disease"};
         String[] result = instance.viewPatientHistory(userID);
         assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-
-    /**
-     * Test of viewAppointment method, of class Doctor.
-     */
-    @Test
-    public void testViewAppointment() {
-        System.out.println("viewAppointment");
-        Doctor instance = null;
-        instance.viewAppointment();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of createAppointment method, of class Doctor.
-     */
-    @Test
-    public void testCreateAppointment() {
-        System.out.println("createAppointment");
-        Doctor instance = null;
-        instance.createAppointment();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
+    //////////Passed ///////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    //////////Passed ///////////////////////////////////////////////////////////
     /**
      * Test of messageSecretary method, of class Doctor.
      */
@@ -192,19 +168,37 @@ public class DoctorTest {
         // remove test notes
         if(conformationResult) fileManagement.AmendFile.removeLine(path, testString);
     }
-
+    //////////Passed ///////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    //////////Passed ///////////////////////////////////////////////////////////
     /**
-     * Test of getMedicineList method, of class Doctor.
+     * Test of proposeAppointment method, of class Doctor.
      */
     @Test
-    public void testGetMedicineList() {
-        System.out.println("getMedicineList");
-        Doctor instance = null;
-        String[] expResult = null;
-        String[] result = instance.getMedicineList();
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testProposeAppointment() {
+        System.out.println("Test of proposeAppointment method, of class Doctor.");
+        String patientID = "P0001";
+        Doctor instance = new Doctor("D0001");
+        String path = "res\\Secretary\\MESSAGE.csv";
+        String message = "test test test";
+        boolean expResult = true;
+        String testString = "MESSAGE,I " + instance.uniqueIdentifier + " " 
+                + instance.surname + " would like an appointment with " 
+                + patientID + " at " + message;
+        boolean result = instance.proposeAppointment(patientID, message);
+        assertEquals(expResult, result);
+        // check if message is there 
+        List list = new ArrayList<>(getLineContainingReturnList(path, testString));
+        boolean conformationResult = false;
+        // test to see if the test notes are there
+        if(list.get(0).equals(testString)) conformationResult = true;
+        // test results
+        assertEquals(conformationResult, expResult);
+        // remove test notes
+        if(conformationResult) fileManagement.AmendFile.removeLine(path, testString);
     }
+    //////////Passed ///////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
     
 }
