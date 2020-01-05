@@ -18,13 +18,15 @@ public class Doctor extends Person
      * Method to add patient notes to the patients data file.
      * Returns True if amendment successfully added.
      * Returns False if amendment fails.
-     * @param userID String
+     * The line entered will be in the following format:
+     * NOTES,this.doctors surname, notes
+     * @param patientID String
      * @param newData String
      * @return boolean
      */
-    public boolean makeNotes(String userID, String newData[])
+    public boolean makeNotes(String patientID, String newData)
     {
-        return addPatientNotes(userID, newData);
+        return addPatientNotes(patientID, newData, this.surname);
     }
     private void proposeAppointment()
     {
