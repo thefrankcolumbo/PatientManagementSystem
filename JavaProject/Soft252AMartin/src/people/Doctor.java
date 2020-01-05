@@ -76,9 +76,15 @@ public class Doctor extends Person
     {
         return addANewMedicine(medicineName, unitDefinition,medicineNotes);
     }
-    private void askSecretaryToOrderMedicine()
+    /**
+     * Method to message secretary to ask for more medicine
+     * @param medicineName String
+     * @return boolean
+     */
+    public boolean askSecretaryToOrderMedicine(String medicineName)
     {
-        
+        String message = "Please order more " + medicineName;
+        return addMessage(message);
     }
     /**
      * Method to view a patients history.
