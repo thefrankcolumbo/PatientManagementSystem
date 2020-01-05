@@ -5,6 +5,7 @@ import static viewData.ViewPatientNotes.viewPatientNotes;
 import static changeData.AddDataToPatientFile.addPatientNotes;
 import static changeData.AddDataToPatientFile.addPatientPrescriptionToNotes;
 import static changeData.MessageSecretary.addMessage;
+import static viewData.ViewCalender.getCalenderForADoctor;
 
 public class Doctor extends Person 
         implements IViewPatientHistory, IViewAppointment, ICommonDoctorSecretaryMethods, IMessageSecretary
@@ -142,6 +143,12 @@ public class Doctor extends Person
     public String[] getMedicineList() 
     {
         return viewData.ViewMedicineList.getMedicinesList();
+    }
+
+    @Override
+    public String[] getCalenderForSpeficDoctor(String userID) 
+    {
+        return getCalenderForADoctor(this.uniqueIdentifier);
     }
     
 }
