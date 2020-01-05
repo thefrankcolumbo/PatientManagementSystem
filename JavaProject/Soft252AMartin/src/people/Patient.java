@@ -47,7 +47,7 @@ public class Patient extends Person
     public boolean requestsAccountTermination()
     {
         String message = "Please delete my account " + this.uniqueIdentifier;
-        return addMessage(message);
+        return messageSecretary(message);
     }
     /**
      * Method to get the reviews of a spefic Doctor.
@@ -89,6 +89,6 @@ public class Patient extends Person
     @Override
     public boolean messageSecretary(String message) 
     {
-        return changeData.MessageSecretary.addMessage(message);
+        return addMessage(message);
     }
 }
