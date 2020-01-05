@@ -111,14 +111,23 @@ public class DoctorTest {
      */
     @Test
     public void testAskSecretaryToOrderMedicine() {
-        System.out.println("askSecretaryToOrderMedicine");
-        String medicineName = "";
-        Doctor instance = null;
-        boolean expResult = false;
-        boolean result = instance.askSecretaryToOrderMedicine(medicineName);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("Test of askSecretaryToOrderMedicine method, of class Doctor.");
+        String medicineName = "testMedicine";
+        String path = "res\\Secretary\\MESSAGE.csv";
+        String testString = "MESSAGE,Please order more " + medicineName;
+        Doctor instance = new Doctor("D0001");
+        boolean expResult = true;
+        // run method
+        instance.askSecretaryToOrderMedicine(medicineName);
+        // check if message is there 
+        List list = new ArrayList<>(getLineContainingReturnList(path, testString));
+        boolean conformationResult = false;
+        // test to see if the test notes are there
+        if(list.get(0).equals(testString)) conformationResult = true;
+        // test results
+        assertEquals(conformationResult, expResult);
+        // remove test notes
+        if(conformationResult) fileManagement.AmendFile.removeLine(path, testString);
     }
 
     /**
