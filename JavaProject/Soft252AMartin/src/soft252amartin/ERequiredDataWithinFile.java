@@ -4,5 +4,6 @@ public enum ERequiredDataWithinFile
 {
     NOTES,
     REVIEW,
-    MESSAGE
+    MESSAGE,
+    PRESCRIPTION
 }
