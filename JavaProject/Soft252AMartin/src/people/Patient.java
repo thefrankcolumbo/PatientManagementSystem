@@ -4,15 +4,22 @@ package people;
 import static changeData.AddDataToDoctorFile.addDoctorReview;
 import static changeData.MessageSecretary.addMessage;
 import static viewData.ViewDoctorReviews.getDoctorReview;
+import static viewData.ViewPatientMessages.getPatientMessages;
 import static viewData.ViewPatientNotes.viewPatientNotes;
 import static viewData.ViewPatientPrescription.viewPrescriptionList;
 
 public class Patient extends Person 
         implements IViewDoctorRatings, IViewPatientHistory, IViewAppointment, IMessageSecretary
 {
+    public String[] messages;
     public Patient(String UniqueIdentifier)
     {
         super(UniqueIdentifier, "Patient");
+        setMessages(getOpenMessages());
+    }
+    private String[] getOpenMessages()
+    {
+        return getPatientMessages(this.uniqueIdentifier);
     }
     /**
      * Method to add doctor review to the doctors data file.
@@ -90,5 +97,12 @@ public class Patient extends Person
     public boolean messageSecretary(String message) 
     {
         return addMessage(message);
+    }
+    public String[] getMessages() {
+        return messages;
+    }
+
+    private void setMessages(String[] messages) {
+        this.messages = messages;
     }
 }
