@@ -8,10 +8,15 @@ import static changeData.UpdateMedicine.upDateMedicineQuantity;
 
 public class Secretary extends Person implements ICommonDoctorSecretaryMethods, ICreateAccount
 {
+    public String[] messages;
     public Secretary(String UniqueIdentifier)
     {
         super(UniqueIdentifier, "Secretary");
-        
+        setMessages(getSecretaryMessages());
+    }
+    private String[] getSecretaryMessages()
+    {
+        return getSecretaryMessages();
     }
     /**
      * Method to change the quantity of a medicine in the medicine file list.
@@ -86,6 +91,14 @@ public class Secretary extends Person implements ICommonDoctorSecretaryMethods, 
     public String[] getMedicineList() 
     {
         return viewData.ViewMedicineList.getMedicinesList();
+    }
+
+    public String[] getMessages() {
+        return messages;
+    }
+
+    private void setMessages(String[] messages) {
+        this.messages = messages;
     }
 
 }
