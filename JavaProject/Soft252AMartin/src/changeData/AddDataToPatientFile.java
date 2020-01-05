@@ -11,12 +11,13 @@ public class AddDataToPatientFile
      * Returns True if successful.
      * Returns False if unsuccessful or file doesn't exist.
      * @param userID String
-     * @param newData String[]
+     * @param newData String
+     * @param doctorSurname String
      * @return boolean
      */
-    public static boolean addPatientNotes(String userID, String newData[])
+    public static boolean addPatientNotes(String userID, String newData, String doctorSurname)
     {
-        String cleanedData = cleanNewDataForNotes(newData);
+        String cleanedData = cleanNewDataForNotes(newData, doctorSurname);
         return addToFile(userID, cleanedData, EPersonType.Patient);
     }
     /**
@@ -44,15 +45,11 @@ public class AddDataToPatientFile
                 + comma + quantity + comma + timeFrame + comma + notes;
         return dataString;
     }
-    private static String cleanNewDataForNotes(String[] newData)
+    private static String cleanNewDataForNotes(String newData, String doctorSurname)
     {
         String entryType = ERequiredDataWithinFile.NOTES.toString();
         String comma = ",";
-        String dataString = entryType + comma;
-        for (String element : newData)
-        {
-            dataString = dataString + element + comma;
-        }
-        return dataString.substring(0, dataString.length() - 1);
+        String dataString = entryType + comma + doctorSurname + comma + newData;
+        return dataString;
     }
 }
