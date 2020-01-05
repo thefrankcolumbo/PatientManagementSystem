@@ -2,6 +2,7 @@
 package people;
 
 import static changeData.AddDataToDoctorFile.addDoctorReview;
+import static changeData.MessageSecretary.addMessage;
 import static viewData.ViewDoctorReviews.getDoctorReview;
 import static viewData.ViewPatientNotes.viewPatientNotes;
 import static viewData.ViewPatientPrescription.viewPrescriptionList;
@@ -38,10 +39,15 @@ public class Patient extends Person
     {
         return viewPrescriptionList(this.uniqueIdentifier);
     }
-    
-    private void requestsAccountTermination()
+    /**
+     * Method to request account termination.
+     * Returns true if message sent successfully.
+     * @return boolean
+     */
+    public boolean requestsAccountTermination()
     {
-        
+        String message = "Please delete my account " + this.uniqueIdentifier;
+        return addMessage(message);
     }
     /**
      * Method to get the reviews of a spefic Doctor.
