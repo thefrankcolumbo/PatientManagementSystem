@@ -1,4 +1,3 @@
-
 package people;
 
 import static changeData.AddDataToDoctorFile.addDoctorReview;
@@ -33,6 +32,12 @@ public class Patient extends Person
     {
         return addDoctorReview(userID, newData);
     }
+    /**
+     * Method to ask for an appointment.
+     * Returns true if message sent successfully.
+     * @param userMessage String
+     * @return boolean
+     */
     public boolean resquestAppointment(String userMessage)
     {
         String message = "Please can I have an appointment " + userMessage 

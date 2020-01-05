@@ -1,6 +1,4 @@
-
 package people;
-
 
 public interface IViewAppointment 
 {

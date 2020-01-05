@@ -9,7 +9,7 @@ import soft252amartin.EPersonType;
 
 public class ViewData 
 {
-    protected static String[] retrieveCalender(String path)
+    public static String[] retrieveCalender(String path)
     {
         return getAllDataFromFile(path, "ERROR CALL ADMINISTRATOR");
     }
