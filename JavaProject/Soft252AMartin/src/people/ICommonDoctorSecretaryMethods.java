@@ -4,7 +4,7 @@ package people;
 
 public interface ICommonDoctorSecretaryMethods 
 {
-    public void createAppointment();
+    public boolean createAppointment(String patientID, String doctorID, int rowNumber);
     public String[] getMedicineList();
     public String[] getCalenderForSpeficDoctor(String userID);
 }
