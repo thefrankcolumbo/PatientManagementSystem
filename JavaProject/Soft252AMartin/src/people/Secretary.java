@@ -1,5 +1,6 @@
 package people;
 
+import static changeData.MakeAppoinment.createAnAppointment;
 import static changeData.MessagePatient.makePatientMessage;
 import passwordUserID.MakeUser;
 import passwordUserID.RemoveUser;
@@ -99,9 +100,21 @@ public class Secretary extends Person implements ICommonDoctorSecretaryMethods, 
     {
         return RemoveUser.removeUser(userID, EPersonType.Patient);
     }
+    /**
+     * Method to create an appointment.
+     * Parameter row number refers to the row number in the calender display on the GUI.
+     * Returns true on successful appointment made.
+     * @param patientID String
+     * @param doctorID String
+     * @param rowNumber integer
+     * @return boolean
+     */
     @Override
-    public void createAppointment() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean createAppointment(String patientID, String doctorID, int rowNumber) 
+    {
+        String appointmentDetails =  createAnAppointment(patientID, doctorID, rowNumber);
+        boolean success = messagePatient(patientID, appointmentDetails);
+        return success;
     }
 
     @Override
