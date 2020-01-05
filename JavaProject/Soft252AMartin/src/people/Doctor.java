@@ -4,6 +4,7 @@ import static changeData.AddNewMedicine.addANewMedicine;
 import static viewData.ViewPatientNotes.viewPatientNotes;
 import static changeData.AddDataToPatientFile.addPatientNotes;
 import static changeData.AddDataToPatientFile.addPatientPrescriptionToNotes;
+import static changeData.MakeAppoinment.createAnAppointment;
 import static changeData.MessageSecretary.addMessage;
 import static viewData.ViewCalender.getCalenderForADoctor;
 
@@ -118,9 +119,23 @@ public class Doctor extends Person
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Method to create an appointment.
+     * Parameter row number refers to the row number in the calender display on the GUI.
+     * This method also sends a message to the secretary to inform the patient they have an appointment.
+     * Returns true on successful appointment made.
+     * @param patientID String
+     * @param doctorID String
+     * @param rowNumber integer
+     * @return boolean
+     */
     @Override
-    public void createAppointment() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean createAppointment(String patientID, String doctorID, int rowNumber) 
+    {
+        String appoinmentDetails = createAnAppointment(patientID, this.uniqueIdentifier, rowNumber);
+        boolean success = addMessage("Please inform " + patientID 
+                + " that they have an appointment " + appoinmentDetails);
+        return success;
     }
     /**
      * Method to send message to all Secretaries.
