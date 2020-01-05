@@ -133,4 +133,20 @@ public class AddDataToFileTest
         // undo changes
         result = AddDataToFile.changeMedicineDetails(medicineName, originalQuantity, path);
     }
+
+
+    /**
+     * Test of changeCalender method, of class AddDataToFile.
+     */
+    @Test
+    public void testChangeCalender() {
+        System.out.println("Test of changeCalender method, of class AddDataToFile.");
+        String patientID = "P0001";
+        String doctorID = "D0001";
+        int rowNumber = 50;
+        String path = "res\\Test\\Appointments.csv";
+        String expResult = "the appointment is on 09/01/2020 at 10 to 11";
+        String result = AddDataToFile.changeCalender(patientID, doctorID, rowNumber, path);
+        assertEquals(expResult, result);
+    }
 }
