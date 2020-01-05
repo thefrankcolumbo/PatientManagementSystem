@@ -47,7 +47,7 @@ public class AddDataToFile
     protected static boolean addToFile(String newData, ERequiredDataWithinFile requiredData, EPersonType personType)
     {
         //make path
-        String path = ("res\\" + personType + "\\" + requiredData.toString() + ".txt");
+        String path = ("res\\" + personType + "\\" + requiredData.toString() + ".csv");
         try 
         {
             //append to file
