@@ -1,9 +1,11 @@
 package people;
 
+import static changeData.MessagePatient.makePatientMessage;
 import passwordUserID.MakeUser;
 import passwordUserID.RemoveUser;
 import soft252amartin.EPersonType;
 import static changeData.UpdateMedicine.upDateMedicineQuantity;
+import static viewData.viewSecretaryMessages.getSecretaryMessages;
 
 
 public class Secretary extends Person implements ICommonDoctorSecretaryMethods, ICreateAccount
@@ -12,9 +14,9 @@ public class Secretary extends Person implements ICommonDoctorSecretaryMethods, 
     public Secretary(String UniqueIdentifier)
     {
         super(UniqueIdentifier, "Secretary");
-        setMessages(getSecretaryMessages());
+        setMessages(getOpenMessages());
     }
-    private String[] getSecretaryMessages()
+    private String[] getOpenMessages()
     {
         return getSecretaryMessages();
     }
@@ -28,6 +30,17 @@ public class Secretary extends Person implements ICommonDoctorSecretaryMethods, 
     public boolean changeMedicineQuantity(String medicineName, String newQuantity)
     {
         return upDateMedicineQuantity(medicineName, newQuantity);
+    }
+    /**
+     * Method to message Patient.
+     * Returns true if message sent successfully.
+     * @param patientID String
+     * @param message String
+     * @return boolean
+     */
+    public boolean messagePatient(String patientID, String message)
+    {
+        return makePatientMessage(patientID, message);
     }
     private void giveMedication()
     {
