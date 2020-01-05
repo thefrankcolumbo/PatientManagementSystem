@@ -116,7 +116,7 @@ public class Doctor extends Person
 
     @Override
     public void viewAppointment() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     /**
