@@ -33,9 +33,11 @@ public class Patient extends Person
     {
         return addDoctorReview(userID, newData);
     }
-    private void resquestAppointment()
+    public boolean resquestAppointment(String userMessage)
     {
-        
+        String message = "Please can I have an appointment " + userMessage 
+                + " from " + this.uniqueIdentifier;
+        return messageSecretary(message);
     }
     /**
      * Method to get the patients prescription.
