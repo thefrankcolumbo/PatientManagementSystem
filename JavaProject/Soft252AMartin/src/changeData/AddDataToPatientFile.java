@@ -2,6 +2,7 @@ package changeData;
 
 import static changeData.AddDataToFile.addToFile;
 import soft252amartin.EPersonType;
+import soft252amartin.ERequiredDataWithinFile;
 
 public class AddDataToPatientFile 
 {
@@ -13,18 +14,45 @@ public class AddDataToPatientFile
      * @param newData String[]
      * @return boolean
      */
-    public static boolean addPatientReview(String userID, String newData[])
+    public static boolean addPatientNotes(String userID, String newData[])
     {
-        String cleanedData = cleanNewData(newData);
+        String cleanedData = cleanNewDataForNotes(newData);
         return addToFile(userID, cleanedData, EPersonType.Patient);
     }
-    private static String cleanNewData(String[] newData)
+    /**
+     * Method to add a new prescription to a patients notes.
+     * @param medicineName
+     * @param quantity
+     * @param timeFrame
+     * @param notes
+     * @param patientID
+     * @return 
+     */
+    public static boolean addPatientPrescriptionToNotes(String medicineName, 
+            String quantity, String timeFrame, String notes, String patientID)
     {
-        String cleanedData = "NOTES,";
+        String newData = createPrescriptionString(medicineName, quantity, timeFrame, notes);
+        return addToFile(patientID, newData, EPersonType.Patient);
+    }
+    private static String createPrescriptionString(String medicineName, 
+            String quantity, String timeFrame, String notes)
+    {
+        String entryType = ERequiredDataWithinFile.PRESCRIPTION.toString();
+        String comma = ",";
+        String status = "OPEN";
+        String dataString = entryType + comma + status + comma + medicineName 
+                + comma + quantity + comma + timeFrame + comma + notes;
+        return dataString;
+    }
+    private static String cleanNewDataForNotes(String[] newData)
+    {
+        String entryType = ERequiredDataWithinFile.NOTES.toString();
+        String comma = ",";
+        String dataString = entryType + comma;
         for (String element : newData)
         {
-            cleanedData = cleanedData + element;
+            dataString = dataString + element + comma;
         }
-        return cleanedData;
+        return dataString.substring(0, dataString.length() - 1);
     }
 }
