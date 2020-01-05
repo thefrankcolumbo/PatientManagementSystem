@@ -5,6 +5,8 @@ import passwordUserID.MakeUser;
 import passwordUserID.RemoveUser;
 import soft252amartin.EPersonType;
 import static changeData.UpdateMedicine.upDateMedicineQuantity;
+import static viewData.ViewCalender.getCalender;
+import static viewData.ViewCalender.getCalenderForADoctor;
 import static viewData.viewSecretaryMessages.getSecretaryMessages;
 
 
@@ -20,6 +22,17 @@ public class Secretary extends Person implements ICommonDoctorSecretaryMethods, 
     {
         return getSecretaryMessages();
     }
+    /**
+     * Method to get the entire appointment calender for all doctors.
+     * The elements of the string will be:
+     * Date, Time frame, Doctor A0001 availability, Doctor A0002 availability, etc etc.
+     * @return String
+     */
+    public String[] getCalenderForAllDoctors()
+    {
+        return getCalender();
+    }
+    
     /**
      * Method to change the quantity of a medicine in the medicine file list.
      * Will return true if quantity changed.
@@ -112,6 +125,12 @@ public class Secretary extends Person implements ICommonDoctorSecretaryMethods, 
 
     private void setMessages(String[] messages) {
         this.messages = messages;
+    }
+
+    @Override
+    public String[] getCalenderForSpeficDoctor(String userID) 
+    {
+        return getCalenderForADoctor(userID);
     }
 
 }
