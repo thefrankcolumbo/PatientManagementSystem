@@ -1,5 +1,6 @@
 package people;
 
+import static fileManagement.ReadFile.readFileContent;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -9,8 +10,10 @@ import java.text.SimpleDateFormat;
 import soft252amartin.EPersonType;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public abstract class Person 
 {
@@ -35,12 +38,15 @@ public abstract class Person
     }
     private void loadPerson (String type)
     {
-        String data = getDataFromFile(type);
+        List data = getDataFromFile(type);
         loadData(data);
     }
-    private void loadData(String data)
+    private void loadData(List data)
     {
-        String[] userData = data.split(",");
+        String tempString = data.toString();
+        tempString = tempString.replace("[", "");
+        tempString = tempString.replace("]", "");
+        String[] userData = tempString.split(",");
         setTitle(userData[0]);
         setGivenName(userData[1]);
         setSurname(userData[2]);
@@ -51,24 +57,11 @@ public abstract class Person
         setDOB(userData[7]);
         setPersonType(EPersonType.valueOf(userData[8]));
     }
-    private String getDataFromFile(String type)
+    private List getDataFromFile(String type)
     {
-        String fileContents = "";
-        String path = "res\\" + type + "\\" + uniqueIdentifier + ".txt";
-        try 
-        {
-            BufferedReader br = new BufferedReader(new FileReader(path));
-            fileContents = br.readLine();
-        } 
-        catch (FileNotFoundException e) 
-        {
-            //log file??
-        } 
-        catch (IOException e) 
-        {
-            //log file??
-        } 
-        return fileContents;
+        String path = "res\\" + type + "\\" + this.uniqueIdentifier + ".csv";
+        List list = new ArrayList<>(readFileContent(path));
+        return list;
     }
     ////////////////////////////////////////////////////////////////////////////
     // private setters
