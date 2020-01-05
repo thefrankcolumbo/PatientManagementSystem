@@ -1,8 +1,10 @@
 package people;
 
-import static changeData.AddDataToPatientFile.addPatientReview;
 import static changeData.AddNewMedicine.addANewMedicine;
 import static viewData.ViewPatientNotes.viewPatientNotes;
+import static changeData.AddDataToPatientFile.addPatientNotes;
+import static changeData.AddDataToPatientFile.addPatientPrescriptionToNotes;
+import static changeData.MessageSecretary.addMessage;
 
 public class Doctor extends Person 
         implements IViewPatientHistory, IViewAppointment, ICommonDoctorSecretaryMethods, IMessageSecretary
@@ -22,15 +24,39 @@ public class Doctor extends Person
      */
     public boolean makeNotes(String userID, String newData[])
     {
-        return addPatientReview(userID, newData);
+        return addPatientNotes(userID, newData);
     }
     private void proposeAppointment()
     {
         
     }
-    private void prescribeMedication()
+    /**
+     * Method to prescribe medicine to a patient and message to secretary.
+     * @param medicineName
+     * @param quantity
+     * @param timeFrame
+     * @param notes
+     * @param patientID
+     * @return 
+     */
+    public boolean prescribeMedication(String medicineName, String quantity, 
+            String timeFrame, String notes, String patientID)
     {
-    
+        boolean success = addPrescriptionToPatientNotes(medicineName, quantity, 
+                timeFrame, notes, patientID);
+        if(success)success = messageSecretaryToGiveOutPerscription(patientID);
+        return success;
+    }
+    private boolean addPrescriptionToPatientNotes(String medicineName, 
+            String quantity, String timeFrame, String notes, String patientID)
+    {
+        return addPatientPrescriptionToNotes(medicineName, quantity, timeFrame,
+                notes, patientID);
+    }
+    private boolean messageSecretaryToGiveOutPerscription(String patientID)
+    {
+        String message = patientID + " has a perscription waiting fro you to process";
+        return addMessage(message);
     }
     /**
      * Method to create a new medicine.
