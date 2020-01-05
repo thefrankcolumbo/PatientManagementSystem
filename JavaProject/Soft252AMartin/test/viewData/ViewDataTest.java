@@ -1,5 +1,6 @@
 package viewData;
 
+import fileManagement.AmendFile;
 import soft252amartin.ERequiredDataWithinFile;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -129,6 +130,46 @@ public class ViewDataTest
             "medicine name10,units remaining,unit definition,medicine notes"};
         String[] result = ViewData.getMedicineList(path);
         assertArrayEquals(expResult, result);
+    }
+
+    /**
+     * Test of getMessages method, of class ViewData.
+     */
+    @Test
+    public void testGetMessages() {
+        System.out.println("Test of getMessages method, of class ViewData, test file has no data. ");
+        // set up variables
+        EPersonType personType = EPersonType.Test;
+        String path = "res\\" + personType + "\\" + ERequiredDataWithinFile.MESSAGE + ".csv";
+        String[] expResult = {"NO MESSAGES"};
+        //delete contents of test file
+        AmendFile.removeFileContents(path);
+        // test method
+        String[] result = ViewData.getMessages(personType, path);
+        assertArrayEquals(expResult, result);
+    }
+    /**
+     * Test of getMessages method, of class ViewData.
+     */
+    @Test
+    public void testGetMessages01() {
+        System.out.println("Test of getMessages method, of class ViewData, test file has data. ");
+        // set up variables
+        EPersonType personType = EPersonType.Test;
+        String path = "res\\" + personType + "\\" + ERequiredDataWithinFile.MESSAGE + ".csv";
+        String[] expResult = {"","this is the first test message.", "this is the second test message."};
+        String testLine01 = "this is the first test message.";
+        String testLine02 = "this is the second test message.";
+        //delete contents of test file
+        AmendFile.removeFileContents(path);
+        // add contents to file
+        AmendFile.appendStringToFile(path, testLine01);
+        AmendFile.appendStringToFile(path, testLine02);
+        // test method
+        String[] result = ViewData.getMessages(personType, path);
+        assertArrayEquals(expResult, result);
+        // delete file contents
+        AmendFile.removeFileContents(path);
     }
 
 }
