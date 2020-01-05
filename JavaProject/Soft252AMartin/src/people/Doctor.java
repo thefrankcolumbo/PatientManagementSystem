@@ -28,9 +28,21 @@ public class Doctor extends Person
     {
         return addPatientNotes(patientID, newData, this.surname);
     }
-    private void proposeAppointment()
+    /**
+     * Method to ask a secretary to arrange for an appointment with a patient.
+     * Parameter message should contain the times and dates proposed.
+     * The message the secretary will see will look like this:
+     * I doctorID doctorSurname would like an appointment with patientID at message.
+     * Return true if message sent successfully.
+     * @param patientID String
+     * @param message String
+     * @return boolean
+     */
+    public boolean proposeAppointment(String patientID, String message)
     {
-        
+        String stdMessage = "I " + this.uniqueIdentifier + " " + this.surname 
+                + " would like an appointment with " + patientID + " at " + message;
+        return addMessage(stdMessage);
     }
     /**
      * Method to prescribe medicine to a patient and message to secretary.
@@ -57,7 +69,7 @@ public class Doctor extends Person
     }
     private boolean messageSecretaryToGiveOutPerscription(String patientID)
     {
-        String message = patientID + " has a perscription waiting fro you to process";
+        String message = patientID + " has a perscription waiting for you to process";
         return addMessage(message);
     }
     /**
