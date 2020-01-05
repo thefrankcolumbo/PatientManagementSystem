@@ -4,6 +4,7 @@ package people;
 import static changeData.AddDataToDoctorFile.addDoctorReview;
 import static viewData.ViewDoctorReviews.getDoctorReview;
 import static viewData.ViewPatientNotes.viewPatientNotes;
+import static viewData.ViewPatientPrescription.viewPrescriptionList;
 
 public class Patient extends Person 
         implements IViewDoctorRatings, IViewPatientHistory, IViewAppointment, IMessageSecretary
@@ -28,10 +29,14 @@ public class Patient extends Person
     {
         
     }
-    
-    private void viewPrescription()
+    /**
+     * Method to get the patients prescription.
+     * returns a String array of prescriptions on file
+     * @return String[]
+     */
+    public String[] viewPrescription()
     {
-        
+        return viewPrescriptionList(this.uniqueIdentifier);
     }
     
     private void requestsAccountTermination()
