@@ -9,22 +9,39 @@ import soft252amartin.EPersonType;
 
 public class ViewData 
 {
-    protected static String[] getMessages(EPersonType personType, String path)
+    protected static String[] retrieveCalender(String path)
     {
-        String[] data;
+        return getAllDataFromFile(path, "ERROR CALL ADMINISTRATOR");
+    }
+    protected static String[] getMessages(String path)
+    {
+        return getAllDataFromFile(path, "NO MESSAGES");
+    }
+    protected static String[] getMedicineList(String path)
+    {
+        return getAllDataFromFile(path, "NO MEDICINES");
+    }
+    protected static String[] retrieveCalenderForADoctor(String path,String doctorID)
+    {
+        // get the column number for that doctor
+        int column = getDoctorColumnNumber(doctorID);
+        //create a temporary array of all the calender
+        String[] tempStrings = retrieveCalender(path);
+        int numberOfLines = tempStrings.length;
+        //create a list
         List<String> contents = new ArrayList<>();
-        contents = readFileContent(path);
-        int lengthOfList = contents.size();
-        if (lengthOfList != 0)
+        // create another temp array to holde each line of calender
+        String[] tempArray;
+        // create a temporary string to put wanted parts of the array element into
+        String tempString = "";
+        for (String element : tempStrings)
         {
-            data = convertListToStringArray(contents, lengthOfList);
-            return data;
+            tempArray = element.split(",");
+            tempString = tempArray[0] + "," + tempArray[1] + "," + tempArray[2] + "," + tempArray[column];
+            contents.add(tempString);
+            tempString = "";
         }
-        else
-        {
-            String[] noData = {"NO MESSAGES"};
-            return noData;
-        }
+        return convertListToStringArray(contents, numberOfLines);
     }
     protected static String[] getData(String userID, EPersonType personType, ERequiredDataWithinFile requiredData)
     {
@@ -44,7 +61,16 @@ public class ViewData
             return noData;
         }
     }
-    protected static String[] getMedicineList(String path)
+    ////////////////////////////////////////////////////////////////////////////
+    // private methods
+    private static int getDoctorColumnNumber(String doctorID)
+    {
+        // remove starting letter
+        String tempString = doctorID.substring(1, 5);
+        // return the remaining 4 numbers as an int
+        return (Integer.valueOf(tempString)+2);
+    }
+    private static String[] getAllDataFromFile(String path, String noDataMessage)
     {
         List<String> contents = new ArrayList<>();
         String[] data;
@@ -57,11 +83,10 @@ public class ViewData
         }
         else
         {
-            String[] noData = {"NO MEDICINES"};
+            String[] noData = {noDataMessage};
             return noData;
         }
     }
-    
     private static String[] convertListToStringArray(List list, int sizeOfList)
     {
         String[] fred = new String[sizeOfList];
