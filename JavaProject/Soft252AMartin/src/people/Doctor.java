@@ -6,15 +6,26 @@ import static changeData.AddDataToPatientFile.addPatientNotes;
 import static changeData.AddDataToPatientFile.addPatientPrescriptionToNotes;
 import static changeData.MakeAppoinment.createAnAppointment;
 import static changeData.MessageSecretary.addMessage;
+import static viewData.ViewAllPatients.getAllPatientInfo;
 import static viewData.ViewCalender.getCalenderForADoctor;
+import static viewData.ViewDoctorMessages.getDoctorMessages;
 
 public class Doctor extends Person 
         implements IViewPatientHistory, IViewAppointment, ICommonDoctorSecretaryMethods, IMessageSecretary
 {
+    public String[] messages;
     public Doctor(String UniqueIdentifier)
     {
         super(UniqueIdentifier, "Doctor");
-        
+        setMessages(getOpenMessages());
+    }
+    private String[] getOpenMessages()
+    {
+        return getDoctorMessages();
+    }
+    public String[] getPatientPerticulars()
+    {
+        return getAllPatientInfo();
     }
     /**
      * Method to add patient notes to the patients data file.
@@ -101,6 +112,13 @@ public class Doctor extends Person
     {
         String message = "Please order more " + medicineName;
         return addMessage(message);
+    }
+    public String[] getMessages() {
+        return messages;
+    }
+
+    private void setMessages(String[] messages) {
+        this.messages = messages;
     }
     /**
      * Method to view a patients history.

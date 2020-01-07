@@ -1,6 +1,6 @@
 package userGUI;
 
-import passwordUserID.CheckLogin;
+import passwordUserID.CheckUserAndPasswords;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -106,14 +106,14 @@ public class Logon extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnlLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(654, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnlLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(297, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pnlLogin.getAccessibleContext().setAccessibleName("pnlLogin");
@@ -179,7 +179,7 @@ public class Logon extends javax.swing.JFrame
     // checks user input against data
     private boolean checkUserNameAndPassword()
     {
-        CheckLogin checkLogin = new CheckLogin();
+        CheckUserAndPasswords checkLogin = new CheckUserAndPasswords();
         boolean success = checkLogin.checkUserNameAndPassword
         (txtLoginUserID.getText(), jPasswordField1.getText());
         return success;
@@ -187,7 +187,22 @@ public class Logon extends javax.swing.JFrame
     // prepare for user spefic gui
     private void loginSuccessful(String userID)
     {
-        holding.main(userID);
+        String personType = userID.substring(0, 1);
+        switch(personType)
+        {
+            case "A":
+                AdminGUI.run(userID);
+                break;
+            case "D":
+                holding.main(userID);
+                break;
+            case "P":
+                break;
+            case "S":
+                break;
+                    
+                
+        }
         this.dispose();
     }
     //

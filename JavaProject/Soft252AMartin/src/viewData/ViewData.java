@@ -3,6 +3,7 @@ package viewData;
 import soft252amartin.ERequiredDataWithinFile;
 import static fileManagement.ReadFile.getLineContainingReturnList;
 import static fileManagement.ReadFile.readFileContent;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import soft252amartin.EPersonType;
@@ -61,8 +62,40 @@ public class ViewData
             return noData;
         }
     }
+    protected static String[] getAllPersonsPerticulars(EPersonType personType)
+    {
+        String[] dataRequired = getAllFileNamesInFolder(personType);
+        for (String element: dataRequired)
+        {
+            element = element + "," + getUserPerticulars(personType, element);
+        }
+        return dataRequired;
+    }
     ////////////////////////////////////////////////////////////////////////////
     // private methods
+    private static String getUserPerticulars(EPersonType personType, String userID)
+    {
+        String path = "res\\" + personType + "\\" + userID + ".csv";
+        String[] tempArray = getAllDataFromFile(path, "");
+        return tempArray[0];
+    }
+    private static String[] getAllFileNamesInFolder(EPersonType personType)
+    {
+        String path = "res//" + personType;
+        List<String> results = new ArrayList<String>();
+        File[] files = new File(path).listFiles();
+        //If this pathname does not denote a directory, then listFiles() returns null. 
+
+        for (File file : files) 
+        {
+            if (file.isFile()) 
+            {
+                results.add(file.getName());
+            }
+        }
+        
+        return convertListToStringArray(results, results.size());
+    }
     private static int getDoctorColumnNumber(String doctorID)
     {
         // remove starting letter

@@ -4,6 +4,11 @@ package people;
 import passwordUserID.MakeUser;
 import passwordUserID.RemoveUser;
 import soft252amartin.EPersonType;
+import static viewData.ViewAllAdmins.getAllAdminsInfo;
+import viewData.ViewAllDoctors;
+import static viewData.ViewAllDoctors.getAllDoctorsInfo;
+import viewData.ViewAllSecretarys;
+import static viewData.ViewAllSecretarys.getAllSecretaryInfo;
 import static viewData.ViewDoctorReviews.getDoctorReview;
 
 public class Administrator extends Person implements IViewDoctorRatings, ICreateAccount
@@ -52,6 +57,10 @@ public class Administrator extends Person implements IViewDoctorRatings, ICreate
             return RemoveUser.removeUser(userID, EPersonType.Administrator);
         else return false;
     }
+    public String[] viewAdmins()
+    {
+        return getAllAdminsInfo();
+    }
     /**
      * Method to create a new Doctor.
      * Parameter DOB must be in "dd/MM/YYYY" format.
@@ -87,6 +96,10 @@ public class Administrator extends Person implements IViewDoctorRatings, ICreate
     public boolean removeDoctor(String userID)
     {
         return RemoveUser.removeUser(userID, EPersonType.Doctor);
+    }
+    public String[] viewDoctors()
+    {
+        return getAllDoctorsInfo();
     }
 //    public Vector listAllCurrentDoctors()
 //    {
@@ -128,6 +141,10 @@ public class Administrator extends Person implements IViewDoctorRatings, ICreate
     {
         return RemoveUser.removeUser(userID, EPersonType.Secretary);
     }
+    public String[] viewSecretaries()
+    {
+        return getAllSecretaryInfo();
+    }
     private void provideDoctorFeedBack(String userID)
     {
         
@@ -147,7 +164,7 @@ public class Administrator extends Person implements IViewDoctorRatings, ICreate
 
     @Override
     public void createAccount(String givenName, String surname, String addressLine1, String addressLine2, String addressLine3, String addressPostcode, String DOB) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
 }

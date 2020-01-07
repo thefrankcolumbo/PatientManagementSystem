@@ -10,6 +10,6 @@ public class MakeAppoinment
     }
     private static String getPath()
     {
-        return "res\\Appoinments\\Appointments.csv";
+        return "res\\Appointments\\Appointments.csv";
     }
 }

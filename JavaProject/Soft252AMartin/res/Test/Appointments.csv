@@ -1,4 +1,5 @@
 
+,null,null,null,null,null
 0,Date,TimeWindow,D0001,D0002,D0003
 1,01/01/2020,9 to 10,Holiday,Holiday,Holiday
 2,01/01/2020,10 to 11,Holiday,Holiday,Holiday
@@ -48,7 +49,7 @@
 46,08/01/2020,13 to 14,Free,Free,Free
 47,08/01/2020,14 to 15,Free,Free,Free
 48,08/01/2020,15 to 16,Free,Free,Free
-49,09/01/2020,9 to 10,Free,Free,Free
+49,09/01/2020,9 to 10,D0001,Free,Free
 50,09/01/2020,10 to 11,Free,Free,Free
 51,09/01/2020,11 to 12,Free,Free,Free
 52,09/01/2020,13 to 14,Free,Free,Free
